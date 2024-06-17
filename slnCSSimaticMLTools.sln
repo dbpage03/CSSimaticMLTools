@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSSimaticMLTools", "CSSimaticMLTools\CSSimaticMLTools.csproj", "{C8008793-81DB-4BEF-9CF4-2947B92D730D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8008793-81DB-4BEF-9CF4-2947B92D730D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8008793-81DB-4BEF-9CF4-2947B92D730D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8008793-81DB-4BEF-9CF4-2947B92D730D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8008793-81DB-4BEF-9CF4-2947B92D730D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7171FC1-233C-4343-BD5A-436B2AAE5EA9}
+	EndGlobalSection
+EndGlobal
