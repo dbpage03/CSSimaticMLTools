@@ -30,6 +30,7 @@ namespace CSSimaticMLTools
             lblType.Text = info.Item1;
             lblName.Text = info.Item2;
             lblNumber.Text = info.Item3;
+            
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,6 +42,42 @@ namespace CSSimaticMLTools
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lblType_TextChanged(object sender, EventArgs e)
+        {
+            if (lblType.Text == "GRAPH")
+            {
+                grpGRAPHScripts.Enabled = true;
+                tabcScripts.SelectTab(0);
+            }
+            else
+            {
+                grpGRAPHScripts.Enabled = false;
+            }
+        }
+
+        private void lblNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (lblNumber.Text.Contains("FC"))
+            {
+                grpFCScripts.Enabled = true;
+                tabcScripts.SelectTab(1);
+            }
+            else
+            {
+                grpFCScripts.Enabled = false;
+            }
+        }
+
+        private void btnScptSeq1_Click(object sender, EventArgs e)
+        {
+            Program.StepNtoDescCtrl(openFileDialog1.FileName);
+        }
+
+        private void btnScptSeq2_Click(object sender, EventArgs e)
+        {
+            Program.SeqToDescTXT(openFileDialog1.FileName);
         }
     }
 }

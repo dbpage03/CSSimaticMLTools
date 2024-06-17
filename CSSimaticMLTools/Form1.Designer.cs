@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnChooseXML = new System.Windows.Forms.Button();
             this.lblCurrentXML = new System.Windows.Forms.Label();
@@ -35,8 +36,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.howToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
@@ -44,7 +45,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblNumber = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnScptSeq1 = new System.Windows.Forms.Button();
+            this.tabcScripts = new System.Windows.Forms.TabControl();
+            this.tabSeq = new System.Windows.Forms.TabPage();
+            this.grpGRAPHScripts = new System.Windows.Forms.GroupBox();
+            this.btnScptSeq2 = new System.Windows.Forms.Button();
+            this.tabFunction = new System.Windows.Forms.TabPage();
+            this.grpFCScripts = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.tabcScripts.SuspendLayout();
+            this.tabSeq.SuspendLayout();
+            this.grpGRAPHScripts.SuspendLayout();
+            this.tabFunction.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -94,7 +107,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -107,18 +120,18 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // howToolStripMenuItem
             // 
             this.howToolStripMenuItem.Name = "howToolStripMenuItem";
-            this.howToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.howToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.howToolStripMenuItem.Text = "How";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -146,6 +159,7 @@
             this.lblType.Size = new System.Drawing.Size(129, 18);
             this.lblType.TabIndex = 5;
             this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblType.TextChanged += new System.EventHandler(this.lblType_TextChanged);
             // 
             // lblName
             // 
@@ -173,6 +187,7 @@
             this.lblNumber.Size = new System.Drawing.Size(129, 18);
             this.lblNumber.TabIndex = 9;
             this.lblNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNumber.TextChanged += new System.EventHandler(this.lblNumber_TextChanged);
             // 
             // label7
             // 
@@ -183,11 +198,100 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Number: ";
             // 
+            // btnScptSeq1
+            // 
+            this.btnScptSeq1.Location = new System.Drawing.Point(6, 19);
+            this.btnScptSeq1.Name = "btnScptSeq1";
+            this.btnScptSeq1.Size = new System.Drawing.Size(161, 23);
+            this.btnScptSeq1.TabIndex = 10;
+            this.btnScptSeq1.Text = "Step # to DescriptorControl";
+            this.btnScptSeq1.UseVisualStyleBackColor = true;
+            this.btnScptSeq1.Click += new System.EventHandler(this.btnScptSeq1_Click);
+            // 
+            // tabcScripts
+            // 
+            this.tabcScripts.Controls.Add(this.tabSeq);
+            this.tabcScripts.Controls.Add(this.tabFunction);
+            this.tabcScripts.Location = new System.Drawing.Point(213, 76);
+            this.tabcScripts.Name = "tabcScripts";
+            this.tabcScripts.SelectedIndex = 0;
+            this.tabcScripts.Size = new System.Drawing.Size(220, 214);
+            this.tabcScripts.TabIndex = 11;
+            // 
+            // tabSeq
+            // 
+            this.tabSeq.Controls.Add(this.grpGRAPHScripts);
+            this.tabSeq.Location = new System.Drawing.Point(4, 22);
+            this.tabSeq.Name = "tabSeq";
+            this.tabSeq.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabSeq.Size = new System.Drawing.Size(212, 188);
+            this.tabSeq.TabIndex = 0;
+            this.tabSeq.Text = "Sequence";
+            this.tabSeq.UseVisualStyleBackColor = true;
+            // 
+            // grpGRAPHScripts
+            // 
+            this.grpGRAPHScripts.Controls.Add(this.button1);
+            this.grpGRAPHScripts.Controls.Add(this.btnScptSeq2);
+            this.grpGRAPHScripts.Controls.Add(this.btnScptSeq1);
+            this.grpGRAPHScripts.Enabled = false;
+            this.grpGRAPHScripts.Location = new System.Drawing.Point(6, 6);
+            this.grpGRAPHScripts.Name = "grpGRAPHScripts";
+            this.grpGRAPHScripts.Size = new System.Drawing.Size(200, 147);
+            this.grpGRAPHScripts.TabIndex = 12;
+            this.grpGRAPHScripts.TabStop = false;
+            this.grpGRAPHScripts.Text = "Scripts";
+            // 
+            // btnScptSeq2
+            // 
+            this.btnScptSeq2.Location = new System.Drawing.Point(6, 48);
+            this.btnScptSeq2.Name = "btnScptSeq2";
+            this.btnScptSeq2.Size = new System.Drawing.Size(161, 23);
+            this.btnScptSeq2.TabIndex = 11;
+            this.btnScptSeq2.Text = "Generate Descriptor Text List";
+            this.btnScptSeq2.UseVisualStyleBackColor = true;
+            this.btnScptSeq2.Click += new System.EventHandler(this.btnScptSeq2_Click);
+            // 
+            // tabFunction
+            // 
+            this.tabFunction.Controls.Add(this.grpFCScripts);
+            this.tabFunction.Location = new System.Drawing.Point(4, 22);
+            this.tabFunction.Name = "tabFunction";
+            this.tabFunction.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabFunction.Size = new System.Drawing.Size(212, 188);
+            this.tabFunction.TabIndex = 1;
+            this.tabFunction.Text = "Function";
+            this.tabFunction.UseVisualStyleBackColor = true;
+            // 
+            // grpFCScripts
+            // 
+            this.grpFCScripts.Enabled = false;
+            this.grpFCScripts.Location = new System.Drawing.Point(6, 6);
+            this.grpFCScripts.Name = "grpFCScripts";
+            this.grpFCScripts.Size = new System.Drawing.Size(200, 147);
+            this.grpFCScripts.TabIndex = 13;
+            this.grpFCScripts.TabStop = false;
+            this.grpFCScripts.Text = "Scripts";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(173, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(21, 22);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "?";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tabcScripts);
             this.Controls.Add(this.lblNumber);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblName);
@@ -198,11 +302,17 @@
             this.Controls.Add(this.lblCurrentXML);
             this.Controls.Add(this.btnChooseXML);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "SimaticML Tools";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabcScripts.ResumeLayout(false);
+            this.tabSeq.ResumeLayout(false);
+            this.grpGRAPHScripts.ResumeLayout(false);
+            this.tabFunction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,6 +336,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnScptSeq1;
+        private System.Windows.Forms.TabControl tabcScripts;
+        private System.Windows.Forms.TabPage tabSeq;
+        private System.Windows.Forms.TabPage tabFunction;
+        private System.Windows.Forms.Button btnScptSeq2;
+        private System.Windows.Forms.GroupBox grpGRAPHScripts;
+        private System.Windows.Forms.GroupBox grpFCScripts;
+        private System.Windows.Forms.Button button1;
     }
 }
 
