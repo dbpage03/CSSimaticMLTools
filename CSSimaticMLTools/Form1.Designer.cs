@@ -36,7 +36,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.howToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,10 +48,13 @@
             this.tabcScripts = new System.Windows.Forms.TabControl();
             this.tabSeq = new System.Windows.Forms.TabPage();
             this.grpGRAPHScripts = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnScptSeq3 = new System.Windows.Forms.Button();
+            this.btnScptSeq2Help = new System.Windows.Forms.Button();
+            this.btnScptSeq1Help = new System.Windows.Forms.Button();
             this.btnScptSeq2 = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabPage();
             this.grpFCScripts = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabcScripts.SuspendLayout();
             this.tabSeq.SuspendLayout();
@@ -114,17 +116,10 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.howToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // howToolStripMenuItem
-            // 
-            this.howToolStripMenuItem.Name = "howToolStripMenuItem";
-            this.howToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.howToolStripMenuItem.Text = "How";
             // 
             // aboutToolStripMenuItem
             // 
@@ -223,7 +218,7 @@
             this.tabSeq.Controls.Add(this.grpGRAPHScripts);
             this.tabSeq.Location = new System.Drawing.Point(4, 22);
             this.tabSeq.Name = "tabSeq";
-            this.tabSeq.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabSeq.Padding = new System.Windows.Forms.Padding(3);
             this.tabSeq.Size = new System.Drawing.Size(212, 188);
             this.tabSeq.TabIndex = 0;
             this.tabSeq.Text = "Sequence";
@@ -232,6 +227,9 @@
             // grpGRAPHScripts
             // 
             this.grpGRAPHScripts.Controls.Add(this.button1);
+            this.grpGRAPHScripts.Controls.Add(this.btnScptSeq3);
+            this.grpGRAPHScripts.Controls.Add(this.btnScptSeq2Help);
+            this.grpGRAPHScripts.Controls.Add(this.btnScptSeq1Help);
             this.grpGRAPHScripts.Controls.Add(this.btnScptSeq2);
             this.grpGRAPHScripts.Controls.Add(this.btnScptSeq1);
             this.grpGRAPHScripts.Enabled = false;
@@ -241,6 +239,59 @@
             this.grpGRAPHScripts.TabIndex = 12;
             this.grpGRAPHScripts.TabStop = false;
             this.grpGRAPHScripts.Text = "Scripts";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(173, 78);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(21, 22);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "?";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            // 
+            // btnScptSeq3
+            // 
+            this.btnScptSeq3.Location = new System.Drawing.Point(6, 77);
+            this.btnScptSeq3.Name = "btnScptSeq3";
+            this.btnScptSeq3.Size = new System.Drawing.Size(161, 23);
+            this.btnScptSeq3.TabIndex = 14;
+            this.btnScptSeq3.Text = "Rewrite Step #";
+            this.btnScptSeq3.UseVisualStyleBackColor = true;
+            this.btnScptSeq3.Visible = false;
+            this.btnScptSeq3.Click += new System.EventHandler(this.btnScptSeq3_Click);
+            // 
+            // btnScptSeq2Help
+            // 
+            this.btnScptSeq2Help.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnScptSeq2Help.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnScptSeq2Help.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScptSeq2Help.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnScptSeq2Help.Location = new System.Drawing.Point(173, 49);
+            this.btnScptSeq2Help.Name = "btnScptSeq2Help";
+            this.btnScptSeq2Help.Size = new System.Drawing.Size(21, 22);
+            this.btnScptSeq2Help.TabIndex = 13;
+            this.btnScptSeq2Help.Text = "?";
+            this.btnScptSeq2Help.UseVisualStyleBackColor = false;
+            this.btnScptSeq2Help.Click += new System.EventHandler(this.btnScptSeq2Help_Click);
+            // 
+            // btnScptSeq1Help
+            // 
+            this.btnScptSeq1Help.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnScptSeq1Help.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnScptSeq1Help.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScptSeq1Help.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnScptSeq1Help.Location = new System.Drawing.Point(173, 20);
+            this.btnScptSeq1Help.Name = "btnScptSeq1Help";
+            this.btnScptSeq1Help.Size = new System.Drawing.Size(21, 22);
+            this.btnScptSeq1Help.TabIndex = 12;
+            this.btnScptSeq1Help.Text = "?";
+            this.btnScptSeq1Help.UseVisualStyleBackColor = false;
+            this.btnScptSeq1Help.Click += new System.EventHandler(this.btnScptSeq1Help_Click);
             // 
             // btnScptSeq2
             // 
@@ -257,7 +308,7 @@
             this.tabFunction.Controls.Add(this.grpFCScripts);
             this.tabFunction.Location = new System.Drawing.Point(4, 22);
             this.tabFunction.Name = "tabFunction";
-            this.tabFunction.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabFunction.Padding = new System.Windows.Forms.Padding(3);
             this.tabFunction.Size = new System.Drawing.Size(212, 188);
             this.tabFunction.TabIndex = 1;
             this.tabFunction.Text = "Function";
@@ -272,19 +323,6 @@
             this.grpFCScripts.TabIndex = 13;
             this.grpFCScripts.TabStop = false;
             this.grpFCScripts.Text = "Scripts";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(173, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 22);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "?";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -328,7 +366,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem howToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblType;
@@ -343,7 +380,10 @@
         private System.Windows.Forms.Button btnScptSeq2;
         private System.Windows.Forms.GroupBox grpGRAPHScripts;
         private System.Windows.Forms.GroupBox grpFCScripts;
+        private System.Windows.Forms.Button btnScptSeq1Help;
+        private System.Windows.Forms.Button btnScptSeq2Help;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnScptSeq3;
     }
 }
 

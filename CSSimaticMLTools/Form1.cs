@@ -74,10 +74,27 @@ namespace CSSimaticMLTools
         {
             Program.StepNtoDescCtrl(openFileDialog1.FileName);
         }
-
+        private void btnScptSeq1Help_Click(object sender, EventArgs e)
+        {
+            ScriptHelp frmHelp = new ScriptHelp();
+            frmHelp.lblText.Text = "This script takes the Step numbers of a sequence and writes them to the #DescriptorControl.\nThe DescriptorControl Action must be present already.";
+            frmHelp.picPicture1.Image = Properties.Resources.StepNotoDescCtrl;
+            frmHelp.Show(this);
+        }
         private void btnScptSeq2_Click(object sender, EventArgs e)
         {
             Program.SeqToDescTXT(openFileDialog1.FileName);
+        }
+        private void btnScptSeq2Help_Click(object sender, EventArgs e)
+        {
+            ScriptHelp frmHelp = new ScriptHelp();
+            frmHelp.lblText.Text = "This script takes the #DescriptorControl number and \"Step Description\" of each step in a sequence and creates a .txt file that can be imported into WinCC Text Lists.";
+            frmHelp.picPicture1.Image = Properties.Resources.DesctoTXT;
+            frmHelp.Show(this);
+        }
+        private void btnScptSeq3_Click(object sender, EventArgs e)
+        {
+            Program.RewriteSteps(openFileDialog1.FileName);
         }
     }
 }

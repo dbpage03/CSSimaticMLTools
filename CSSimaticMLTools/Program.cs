@@ -237,5 +237,58 @@ namespace CSSimaticMLTools
             }
             
         }
+        public static void RewriteSteps(string fpath)
+        {
+            string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+            XDocument xmlDoc = XDocument.Load(fpath);
+            foreach (XElement sequence in xmlDoc.Descendants(ns + "Sequence"))
+            {
+                List<GRAPHStepConnect> stepConnects = new List<GRAPHStepConnect>();
+                
+                if (sequence.Element(ns + "Title").Element(ns + "MultiLanguageText").Value == "Reset") { continue; }
+                
+                foreach (XElement step in sequence.Descendants(ns + "Step")) 
+                {
+                    XElement connTo = null;
+                    XElement connFrom = null;
+                    XElement staticMember = null;
+                    foreach (XElement conn in sequence.Descendants(ns + "Connection"))
+                    {
+                        if (conn.Element(ns + "NodeTo").Descendants(ns + "StepRef").Count() > 0)
+                        {
+                            if (conn.Element(ns + "NodeTo").Descendants(ns + "StepRef").First().Attribute("Number").Value == step.Attribute("Number").Value)
+                            {
+                                connTo = conn;
+                            }
+                        }
+                        if (conn.Element(ns + "NodeFrom").Descendants(ns + "StepRef").Count() > 0) 
+                        {
+                            if (conn.Element(ns + "NodeFrom").Descendants(ns + "StepRef").First().Attribute("Number").Value == step.Attribute("Number").Value)
+                            {
+                                connFrom = conn;
+                            }
+                        }
+                    }
+                    foreach (XElement member in xmlDoc.Descendants("{http://www.siemens.com/automation/Openness/SW/Interface/v5}" + "Member"))
+                    {
+                        if (member.Attribute("Name").Value == step.Attribute("Name").Value && member.Attribute("Datatype").Value == "G7_StepPlus_V6")
+                        {
+                            staticMember = member;
+                            break;
+                        }
+                    }
+                    stepConnects.Add(new GRAPHStepConnect(ns, step, connTo, connFrom, staticMember));
+                }
+                int i = 1000;
+                foreach (GRAPHStepConnect connect in stepConnects)
+                {
+                    connect.SetNo(i);
+                    connect.ReplaceInDoc(xmlDoc);
+                    i++;
+
+                }
+            }
+            xmlDoc.Save(fpath);
+        }
     }
 }
