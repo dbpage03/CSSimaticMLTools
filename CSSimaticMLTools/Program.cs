@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -243,8 +245,9 @@ namespace CSSimaticMLTools
             XDocument xmlDoc = XDocument.Load(fpath);
             foreach (XElement sequence in xmlDoc.Descendants(ns + "Sequence"))
             {
+                string strSeqNo = Interaction.InputBox("Which sequence number would you like to rewrite the steps for?", "Select Sequence Number");
                 List<GRAPHStepConnect> stepConnects = new List<GRAPHStepConnect>();
-                
+                //Don't Do Reset Sequence
                 if (sequence.Element(ns + "Title").Element(ns + "MultiLanguageText").Value == "Reset") { continue; }
                 
                 foreach (XElement step in sequence.Descendants(ns + "Step")) 
@@ -290,5 +293,142 @@ namespace CSSimaticMLTools
             }
             xmlDoc.Save(fpath);
         }
+        public static void InStepReplaceX(string fpath)
+        {
+            string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+            XDocument xmlDoc = XDocument.Load(fpath);
+            int sSrc = 2661054;
+            int tSrc = 2661054;
+            List<List<int>> numList = new List<List<int>>() 
+            {
+                new List<int>(3) {651 , 695, 2661001},
+                new List<int>(3) {653 , 694, 2661002},
+                new List<int>(3) {655 , 693, 2661003},
+                new List<int>(3) {657 , 692, 2661004},
+                new List<int>(3) {659 , 691, 2661043},
+                new List<int>(3) {661 , 690, 2661044},
+                new List<int>(3) {663 , 689, 2661005},
+                new List<int>(3) {665 , 688, 2661006},
+                new List<int>(3) {667 , 687, 2661045},
+                new List<int>(3) {669 , 686, 2661007},
+                new List<int>(3) {671 , 685, 2661009},
+                new List<int>(3) {673 , 684, 2661010},
+                new List<int>(3) {675 , 683, 2661011},
+                new List<int>(3) {677 , 682, 2661012}
+            };
+            foreach (List<int> iList in numList)
+            {
+                foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
+                {
+                    if (step.Attribute("Number").Value == iList[0].ToString() || step.Attribute("Number").Value == iList[1].ToString())
+                    {
+                        string tNum = "0";
+                        Console.WriteLine("S_No:\t" + step.Attribute("Number").Value);
+                        foreach (XElement token in step.Descendants(ns + "Token"))
+                        {
+                            token.SetAttributeValue("Text",token.Attribute("Text").Value.Replace(sSrc.ToString(),iList[2].ToString()));
+                        }
+                        foreach (XElement component in step.Descendants(ns +"Component"))
+                        {
+                            component.SetAttributeValue("Name",component.Attribute("Name").Value.Replace(tSrc.ToString(),iList[2].ToString()));
+                        }
+                        //Transition Time
+                        foreach (XElement conn in xmlDoc.Descendants(ns + "Connection"))
+                        {
+                            if (conn.Element(ns + "NodeFrom").Descendants(ns + "StepRef").Count() > 0)
+                            {
+                                if (conn.Element(ns + "NodeFrom").Descendants(ns + "StepRef").First().Attribute("Number").Value == step.Attribute("Number").Value)
+                                {
+                                    tNum = conn.Element(ns + "NodeTo").Descendants().First().Attribute("Number").Value;
+                                    Console.WriteLine("T_No:\t" + tNum);
+                                    break;
+                                }
+                            }
+                        }
+                        foreach (XElement trans in xmlDoc.Descendants(ns + "Transition"))
+                        {
+                            if (trans.Attribute("Number").Value == tNum)
+                            {
+                                foreach (XElement component in trans.Descendants(ns + "Component"))
+                                {
+                                    component.SetAttributeValue("Name", component.Attribute("Name").Value.Replace(tSrc.ToString(), iList[2].ToString()));
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            xmlDoc.Save(fpath);
+        }
+        public static void SNameRDesc(string fpath,DataGridView grid)
+        {
+            string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+            XDocument xmlDoc = XDocument.Load(fpath);
+            Console.WriteLine("Pay attention");
+            foreach (XElement step in xmlDoc.Descendants(ns + "Step")) 
+            {
+                 foreach (DataGridViewRow row in grid.Rows)
+                {
+                    //Console.WriteLine("E\t" + row.Cells[0].Value.ToString());
+                    if (row.Cells["TableName"].Value.ToString() == step.Attribute("Name").Value)
+                    {
+                        Console.WriteLine(step.Attribute("Name").Value);
+                        if (step.Element(ns + "Actions").Descendants(ns + "Title").Count() > 0)
+                        {
+                            step.Element(ns + "Actions").Descendants(ns + "MultiLanguageText").First().Value = row.Cells["TableDesc"].Value.ToString();
+                        } else
+                        {
+                            step.Element(ns + "Actions").AddFirst(new XElement(ns + "Title"));
+                            step.Element(ns + "Actions").Element(ns + "Title").AddFirst(new XElement(ns + "MultiLanguageText", row.Cells["TableDesc"].Value.ToString()));
+                            step.Element(ns + "Actions").Element(ns + "Title").Element(ns + "MultiLanguageText").SetAttributeValue("Lang", "en-US");
+                        }
+                        break;
+                    }
+                }
+            }
+            xmlDoc.Save(fpath);
+
+        }
+        public static void GetStepNames(string fpath, DataGridView grid)
+        {
+            grid.Rows.Clear();
+            string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+            XDocument xmlDoc = XDocument.Load(fpath);
+            foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
+            {
+                string sNo = step.Attribute("Number").Value.PadLeft(3,'0');
+                string sName = step.Attribute("Name").Value;
+                string sDescNo = "";
+                string sDesc = "";
+                
+
+                if (step.Element(ns + "Actions").Descendants(ns + "Title").Count() > 0)
+                {
+                    sDesc = step.Element(ns + "Actions").Descendants(ns + "MultiLanguageText").First().Value;
+                }
+                foreach (XElement action in step.Descendants(ns + "Action"))
+                {
+                    bool descAction = false;
+                    //Loop through Tokens
+                    foreach (XElement token in action.Descendants(ns + "Token"))
+                    {
+                        //Descriptor Action?
+                        if (token.Attribute("Text").Value.Contains("DescriptorControl"))
+                        {
+                            descAction = true;
+                        }
+                        //Descriptor Number?
+                        if (descAction && int.TryParse(token.Attribute("Text").Value, out int i))
+                        {
+                            //Console.WriteLine(token.Attribute("Text").Value);
+                            sDescNo = token.Attribute("Text").Value;
+                        }
+                    }
+                }
+                grid.Rows.Add(sNo, sName, sDescNo, sDesc);
+            }
+        }
+
     }
 }

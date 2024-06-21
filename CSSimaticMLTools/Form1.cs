@@ -19,6 +19,7 @@ namespace CSSimaticMLTools
 
         private void btnChooseXML_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             openFileDialog1.ShowDialog();
         }
 
@@ -49,11 +50,14 @@ namespace CSSimaticMLTools
             if (lblType.Text == "GRAPH")
             {
                 grpGRAPHScripts.Enabled = true;
+                grpTable.Enabled = true;
                 tabcScripts.SelectTab(0);
+                Program.GetStepNames(openFileDialog1.FileName,dataGridView1);
             }
             else
             {
                 grpGRAPHScripts.Enabled = false;
+                grpTable.Enabled = false;
             }
         }
 
@@ -73,6 +77,7 @@ namespace CSSimaticMLTools
         private void btnScptSeq1_Click(object sender, EventArgs e)
         {
             Program.StepNtoDescCtrl(openFileDialog1.FileName);
+            Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
         }
         private void btnScptSeq1Help_Click(object sender, EventArgs e)
         {
@@ -94,7 +99,49 @@ namespace CSSimaticMLTools
         }
         private void btnScptSeq3_Click(object sender, EventArgs e)
         {
-            Program.RewriteSteps(openFileDialog1.FileName);
+            Program.InStepReplaceX(openFileDialog1.FileName);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Program.SNameRDesc(openFileDialog1.FileName, dataGridView1);
+        }
+        private void btnListPaste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string s = Clipboard.GetText();
+
+                string[] lines = s.Replace("\n", "").Split('\r');
+
+                dataGridView1.Rows.Add(lines.Length - 1);
+                string[] fields;
+                int row = 0;
+                int col = 0;
+
+                foreach (string item in lines)
+                {
+                    fields = item.Split('\t');
+                    foreach (string f in fields)
+                    {
+                        Console.WriteLine(f);
+                        dataGridView1[col, row].Value = f;
+                        col++;
+                    }
+                    row++;
+                    col = 0;
+                }
+            }
+            catch { }
+        }
+
+        private void btnListClear_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+        }
+
+        private void btnListGet_Click(object sender, EventArgs e)
+        {
+            Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
         }
     }
 }
