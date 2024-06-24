@@ -50,7 +50,15 @@
             this.btnScptSeq1 = new System.Windows.Forms.Button();
             this.tabcScripts = new System.Windows.Forms.TabControl();
             this.tabSeq = new System.Windows.Forms.TabPage();
+            this.grpTable = new System.Windows.Forms.GroupBox();
+            this.btnBackup = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnListGet = new System.Windows.Forms.Button();
+            this.btnListClear = new System.Windows.Forms.Button();
+            this.btnListPaste = new System.Windows.Forms.Button();
             this.grpGRAPHScripts = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnScptSeq3 = new System.Windows.Forms.Button();
             this.btnScptSeq2Help = new System.Windows.Forms.Button();
@@ -58,26 +66,20 @@
             this.btnScptSeq2 = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabPage();
             this.grpFCScripts = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnListPaste = new System.Windows.Forms.Button();
-            this.btnListClear = new System.Windows.Forms.Button();
-            this.btnListGet = new System.Windows.Forms.Button();
-            this.grpTable = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.button4 = new System.Windows.Forms.Button();
             this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.tabcScripts.SuspendLayout();
             this.tabSeq.SuspendLayout();
+            this.grpTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpGRAPHScripts.SuspendLayout();
             this.tabFunction.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.grpTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +92,7 @@
             // 
             // btnChooseXML
             // 
-            this.btnChooseXML.Location = new System.Drawing.Point(817, 3);
+            this.btnChooseXML.Location = new System.Drawing.Point(848, 3);
             this.btnChooseXML.Name = "btnChooseXML";
             this.btnChooseXML.Size = new System.Drawing.Size(88, 21);
             this.btnChooseXML.TabIndex = 0;
@@ -103,11 +105,11 @@
             this.lblCurrentXML.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurrentXML.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCurrentXML.Location = new System.Drawing.Point(71, 3);
+            this.lblCurrentXML.Location = new System.Drawing.Point(74, 3);
             this.lblCurrentXML.Margin = new System.Windows.Forms.Padding(3);
             this.lblCurrentXML.MinimumSize = new System.Drawing.Size(400, 20);
             this.lblCurrentXML.Name = "lblCurrentXML";
-            this.lblCurrentXML.Size = new System.Drawing.Size(740, 20);
+            this.lblCurrentXML.Size = new System.Drawing.Size(768, 20);
             this.lblCurrentXML.TabIndex = 1;
             this.lblCurrentXML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -118,7 +120,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(936, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(969, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -159,7 +161,7 @@
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
+            this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Current File";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -258,7 +260,7 @@
             this.tabcScripts.Location = new System.Drawing.Point(241, 76);
             this.tabcScripts.Name = "tabcScripts";
             this.tabcScripts.SelectedIndex = 0;
-            this.tabcScripts.Size = new System.Drawing.Size(683, 350);
+            this.tabcScripts.Size = new System.Drawing.Size(716, 350);
             this.tabcScripts.TabIndex = 11;
             // 
             // tabSeq
@@ -268,10 +270,118 @@
             this.tabSeq.Location = new System.Drawing.Point(4, 22);
             this.tabSeq.Name = "tabSeq";
             this.tabSeq.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSeq.Size = new System.Drawing.Size(675, 324);
+            this.tabSeq.Size = new System.Drawing.Size(708, 324);
             this.tabSeq.TabIndex = 0;
             this.tabSeq.Text = "Sequence";
             this.tabSeq.UseVisualStyleBackColor = true;
+            // 
+            // grpTable
+            // 
+            this.grpTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpTable.Controls.Add(this.btnBackup);
+            this.grpTable.Controls.Add(this.dataGridView1);
+            this.grpTable.Controls.Add(this.btnListGet);
+            this.grpTable.Controls.Add(this.btnListClear);
+            this.grpTable.Controls.Add(this.btnListPaste);
+            this.grpTable.Enabled = false;
+            this.grpTable.Location = new System.Drawing.Point(212, 6);
+            this.grpTable.Name = "grpTable";
+            this.grpTable.Size = new System.Drawing.Size(490, 312);
+            this.grpTable.TabIndex = 20;
+            this.grpTable.TabStop = false;
+            this.grpTable.Text = "Step Name and Desc";
+            // 
+            // btnBackup
+            // 
+            this.btnBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBackup.ForeColor = System.Drawing.Color.Black;
+            this.btnBackup.Location = new System.Drawing.Point(249, 280);
+            this.btnBackup.Name = "btnBackup";
+            this.btnBackup.Size = new System.Drawing.Size(75, 23);
+            this.btnBackup.TabIndex = 20;
+            this.btnBackup.Text = "Backup";
+            this.btnBackup.UseVisualStyleBackColor = true;
+            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TableStep,
+            this.TableName,
+            this.TableDescNo,
+            this.TableDesc});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Size = new System.Drawing.Size(478, 255);
+            this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            // 
+            // btnListGet
+            // 
+            this.btnListGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnListGet.ForeColor = System.Drawing.Color.Black;
+            this.btnListGet.Location = new System.Drawing.Point(168, 280);
+            this.btnListGet.Name = "btnListGet";
+            this.btnListGet.Size = new System.Drawing.Size(75, 23);
+            this.btnListGet.TabIndex = 19;
+            this.btnListGet.Text = "Get Names";
+            this.btnListGet.UseVisualStyleBackColor = true;
+            this.btnListGet.Click += new System.EventHandler(this.btnListGet_Click);
+            // 
+            // btnListClear
+            // 
+            this.btnListClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnListClear.ForeColor = System.Drawing.Color.Black;
+            this.btnListClear.Location = new System.Drawing.Point(87, 280);
+            this.btnListClear.Name = "btnListClear";
+            this.btnListClear.Size = new System.Drawing.Size(75, 23);
+            this.btnListClear.TabIndex = 18;
+            this.btnListClear.Text = "Clear";
+            this.btnListClear.UseVisualStyleBackColor = true;
+            this.btnListClear.Click += new System.EventHandler(this.btnListClear_Click);
+            // 
+            // btnListPaste
+            // 
+            this.btnListPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnListPaste.ForeColor = System.Drawing.Color.Black;
+            this.btnListPaste.Location = new System.Drawing.Point(6, 280);
+            this.btnListPaste.Name = "btnListPaste";
+            this.btnListPaste.Size = new System.Drawing.Size(75, 23);
+            this.btnListPaste.TabIndex = 17;
+            this.btnListPaste.Text = "Paste";
+            this.btnListPaste.UseVisualStyleBackColor = true;
+            this.btnListPaste.Click += new System.EventHandler(this.btnListPaste_Click);
             // 
             // grpGRAPHScripts
             // 
@@ -292,6 +402,29 @@
             this.grpGRAPHScripts.TabIndex = 12;
             this.grpGRAPHScripts.TabStop = false;
             this.grpGRAPHScripts.Text = "Scripts";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(173, 107);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 22);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "?";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 106);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(161, 23);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "By Name Do Desc";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button1
             // 
@@ -360,7 +493,7 @@
             this.tabFunction.Location = new System.Drawing.Point(4, 22);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFunction.Size = new System.Drawing.Size(212, 188);
+            this.tabFunction.Size = new System.Drawing.Size(708, 324);
             this.tabFunction.TabIndex = 1;
             this.tabFunction.Text = "Function";
             this.tabFunction.UseVisualStyleBackColor = true;
@@ -375,148 +508,6 @@
             this.grpFCScripts.TabStop = false;
             this.grpFCScripts.Text = "Scripts";
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(173, 107);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(21, 22);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "?";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(6, 106);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(161, 23);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "By Name Do Desc";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TableStep,
-            this.TableName,
-            this.TableDescNo,
-            this.TableDesc});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Size = new System.Drawing.Size(445, 255);
-            this.dataGridView1.TabIndex = 15;
-            // 
-            // btnListPaste
-            // 
-            this.btnListPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnListPaste.ForeColor = System.Drawing.Color.Black;
-            this.btnListPaste.Location = new System.Drawing.Point(6, 280);
-            this.btnListPaste.Name = "btnListPaste";
-            this.btnListPaste.Size = new System.Drawing.Size(75, 23);
-            this.btnListPaste.TabIndex = 17;
-            this.btnListPaste.Text = "Paste";
-            this.btnListPaste.UseVisualStyleBackColor = true;
-            this.btnListPaste.Click += new System.EventHandler(this.btnListPaste_Click);
-            // 
-            // btnListClear
-            // 
-            this.btnListClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnListClear.ForeColor = System.Drawing.Color.Black;
-            this.btnListClear.Location = new System.Drawing.Point(87, 280);
-            this.btnListClear.Name = "btnListClear";
-            this.btnListClear.Size = new System.Drawing.Size(75, 23);
-            this.btnListClear.TabIndex = 18;
-            this.btnListClear.Text = "Clear";
-            this.btnListClear.UseVisualStyleBackColor = true;
-            this.btnListClear.Click += new System.EventHandler(this.btnListClear_Click);
-            // 
-            // btnListGet
-            // 
-            this.btnListGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnListGet.ForeColor = System.Drawing.Color.Black;
-            this.btnListGet.Location = new System.Drawing.Point(168, 280);
-            this.btnListGet.Name = "btnListGet";
-            this.btnListGet.Size = new System.Drawing.Size(75, 23);
-            this.btnListGet.TabIndex = 19;
-            this.btnListGet.Text = "Get Names";
-            this.btnListGet.UseVisualStyleBackColor = true;
-            this.btnListGet.Click += new System.EventHandler(this.btnListGet_Click);
-            // 
-            // grpTable
-            // 
-            this.grpTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpTable.Controls.Add(this.dataGridView1);
-            this.grpTable.Controls.Add(this.btnListGet);
-            this.grpTable.Controls.Add(this.btnListClear);
-            this.grpTable.Controls.Add(this.btnListPaste);
-            this.grpTable.Enabled = false;
-            this.grpTable.Location = new System.Drawing.Point(212, 6);
-            this.grpTable.Name = "grpTable";
-            this.grpTable.Size = new System.Drawing.Size(457, 312);
-            this.grpTable.TabIndex = 20;
-            this.grpTable.TabStop = false;
-            this.grpTable.Text = "Step Name and Desc";
-            // 
-            // TableStep
-            // 
-            this.TableStep.HeaderText = "Step";
-            this.TableStep.Name = "TableStep";
-            this.TableStep.ReadOnly = true;
-            this.TableStep.Width = 40;
-            // 
-            // TableName
-            // 
-            this.TableName.HeaderText = "Name";
-            this.TableName.Name = "TableName";
-            this.TableName.ReadOnly = true;
-            this.TableName.Width = 150;
-            // 
-            // TableDescNo
-            // 
-            this.TableDescNo.HeaderText = "Desc #";
-            this.TableDescNo.Name = "TableDescNo";
-            this.TableDescNo.Width = 40;
-            // 
-            // TableDesc
-            // 
-            this.TableDesc.HeaderText = "Desc";
-            this.TableDesc.Name = "TableDesc";
-            this.TableDesc.Width = 200;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -524,7 +515,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.435207F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.56479F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnChooseXML, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblCurrentXML, 1, 0);
@@ -532,7 +523,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(908, 28);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(941, 28);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // tableLayoutPanel2
@@ -555,11 +546,50 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(223, 86);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(122, 321);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // TableStep
+            // 
+            this.TableStep.HeaderText = "Step";
+            this.TableStep.MinimumWidth = 40;
+            this.TableStep.Name = "TableStep";
+            this.TableStep.Width = 43;
+            // 
+            // TableName
+            // 
+            this.TableName.HeaderText = "Name";
+            this.TableName.MinimumWidth = 150;
+            this.TableName.Name = "TableName";
+            this.TableName.ReadOnly = true;
+            this.TableName.Width = 150;
+            // 
+            // TableDescNo
+            // 
+            this.TableDescNo.HeaderText = "Desc #";
+            this.TableDescNo.MinimumWidth = 40;
+            this.TableDescNo.Name = "TableDescNo";
+            this.TableDescNo.Width = 40;
+            // 
+            // TableDesc
+            // 
+            this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TableDesc.HeaderText = "Desc";
+            this.TableDesc.Name = "TableDesc";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 438);
+            this.ClientSize = new System.Drawing.Size(969, 438);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tabcScripts);
@@ -573,10 +603,10 @@
             this.menuStrip1.PerformLayout();
             this.tabcScripts.ResumeLayout(false);
             this.tabSeq.ResumeLayout(false);
+            this.grpTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grpGRAPHScripts.ResumeLayout(false);
             this.tabFunction.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.grpTable.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -619,12 +649,14 @@
         private System.Windows.Forms.Button btnListClear;
         private System.Windows.Forms.Button btnListGet;
         private System.Windows.Forms.GroupBox grpTable;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnBackup;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableStep;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableDescNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableDesc;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
 

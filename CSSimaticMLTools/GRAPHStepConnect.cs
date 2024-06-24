@@ -19,6 +19,7 @@ namespace CSSimaticMLTools
         public XElement nConnTo { get; set; }
         public XElement nConnFrom { get; set; }
         public XElement nStaticMember { get; set; }
+        public int sNo { get; }
 
         public void SetNo(int num)
         {
@@ -29,7 +30,7 @@ namespace CSSimaticMLTools
             {
                 if (member.Attribute("Name").Value == "SNO")
                 {
-                    member.SetAttributeValue("StartValue",num);
+                    member.SetElementValue("{http://www.siemens.com/automation/Openness/SW/Interface/v5}" + "StartValue", num);
                 }
             }
         }
@@ -55,6 +56,7 @@ namespace CSSimaticMLTools
             this.nConnTo = connTo;
             this.nConnFrom = connFrom;
             this.nStaticMember = staticMember;
+            this.sNo = int.Parse(step.Attribute("Number").Value);
         }
     }
 }

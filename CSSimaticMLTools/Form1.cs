@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace CSSimaticMLTools
 {
@@ -16,6 +19,8 @@ namespace CSSimaticMLTools
         {
             InitializeComponent();
         }
+
+        private int stepNo = -1;
 
         private void btnChooseXML_Click(object sender, EventArgs e)
         {
@@ -28,6 +33,7 @@ namespace CSSimaticMLTools
             Tuple<string,string,string> info;
             lblCurrentXML.Text = openFileDialog1.FileName;
             info = Program.GetInfo(openFileDialog1.FileName);
+            Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
             lblType.Text = info.Item1;
             lblName.Text = info.Item2;
             lblNumber.Text = info.Item3;
@@ -52,7 +58,6 @@ namespace CSSimaticMLTools
                 grpGRAPHScripts.Enabled = true;
                 grpTable.Enabled = true;
                 tabcScripts.SelectTab(0);
-                Program.GetStepNames(openFileDialog1.FileName,dataGridView1);
             }
             else
             {
@@ -99,7 +104,12 @@ namespace CSSimaticMLTools
         }
         private void btnScptSeq3_Click(object sender, EventArgs e)
         {
-            Program.InStepReplaceX(openFileDialog1.FileName);
+            DialogResult dialogResult = MessageBox.Show("Warning: This script can make dramatic changes to your sequence. \r\nContinue?","Warning",MessageBoxButtons.OKCancel);
+            if (dialogResult == DialogResult.OK)
+            {
+                Program.InStepReplaceX(openFileDialog1.FileName);
+            }
+            
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -142,6 +152,49 @@ namespace CSSimaticMLTools
         private void btnListGet_Click(object sender, EventArgs e)
         {
             Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+        }
+
+        private void btnBackup_Click(object sender, EventArgs e)
+        {
+            string nPath = openFileDialog1.FileName.Replace(".xml", "") + "_" + System.DateTime.Now.Month.ToString().PadLeft(2,'0') + DateTime.Now.Day.ToString().PadLeft(2, '0') + DateTime.Now.Year + "_" + System.DateTime.Now.Hour.ToString().PadLeft(2, '0') + DateTime.Now.Minute.ToString().PadLeft(2, '0') + DateTime.Now.Second.ToString().PadLeft(2, '0') + ".xml";
+            XDocument xmlDoc = XDocument.Load(openFileDialog1.FileName);
+            xmlDoc.Save(nPath);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            StepView frmStep = new StepView();
+            frmStep.Show();
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int nStepNo = 0;
+            if (e.ColumnIndex == 0)
+            {
+                if (!int.TryParse(dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString(), out nStepNo)) { nStepNo = -1; }
+            }
+            if (e.ColumnIndex == 0 && stepNo != -1 && nStepNo != -1 )
+            {
+                int rNo = Program.RenumberStep(openFileDialog1.FileName, stepNo,nStepNo);
+                dataGridView1[e.ColumnIndex, e.RowIndex].Value = rNo;
+                if (rNo != nStepNo) { 
+                    MessageBox.Show("Failed to Change Step Number","Operation Failed",MessageBoxButtons.OK,MessageBoxIcon.Error); 
+                } else 
+                { 
+                    Program.GetStepNames(openFileDialog1.FileName, dataGridView1); 
+                }
+
+            }
+            
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                if (!int.TryParse(dataGridView1[e.ColumnIndex,e.RowIndex].Value.ToString(),out stepNo)) { stepNo = -1; }
+            }
         }
     }
 }
