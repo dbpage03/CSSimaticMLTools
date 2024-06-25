@@ -196,5 +196,18 @@ namespace CSSimaticMLTools
                 if (!int.TryParse(dataGridView1[e.ColumnIndex,e.RowIndex].Value.ToString(),out stepNo)) { stepNo = -1; }
             }
         }
-    }
+
+		private void newVersionToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Properties.Settings.Default.NewApp = !newVersionToolStripMenuItem.Checked;
+            Properties.Settings.Default.Save();
+            newVersionToolStripMenuItem.Checked = Properties.Settings.Default.NewApp;
+            Application.Restart();
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			newVersionToolStripMenuItem.Checked = Properties.Settings.Default.NewApp;
+		}
+	}
 }

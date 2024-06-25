@@ -24,7 +24,15 @@ namespace CSSimaticMLTools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Properties.Settings.Default.Reload();
+            if (Properties.Settings.Default.NewApp == true)
+            {
+                Application.Run(new SmeltUnified());
+            }
+            else
+            {
+                Application.Run(new Form1());
+            }
         }
 
         public static Tuple<string, string,string> GetInfo(string text)
@@ -368,13 +376,12 @@ namespace CSSimaticMLTools
         {
             string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
             XDocument xmlDoc = XDocument.Load(fpath);
-            Console.WriteLine("Pay attention");
             foreach (XElement step in xmlDoc.Descendants(ns + "Step")) 
             {
                  foreach (DataGridViewRow row in grid.Rows)
                 {
                     //Console.WriteLine("E\t" + row.Cells[0].Value.ToString());
-                    if (row.Cells["TableName"].Value.ToString() == step.Attribute("Name").Value)
+                    if (row.Cells["TableStep"].Value.ToString() == step.Attribute("Number").Value)
                     {
                         Console.WriteLine(step.Attribute("Name").Value);
                         string desc;
