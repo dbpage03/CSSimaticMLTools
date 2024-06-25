@@ -98,6 +98,12 @@
     <Compile Include="ScriptHelp.Designer.cs">
       <DependentUpon>ScriptHelp.cs</DependentUpon>
     </Compile>
+    <Compile Include="SmeltSequence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmeltSequence.Designer.cs">
+      <DependentUpon>SmeltSequence.cs</DependentUpon>
+    </Compile>
     <Compile Include="SmeltUnified.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </Compile>
     <EmbeddedResource Include="ScriptHelp.resx">
       <DependentUpon>ScriptHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmeltSequence.resx">
+      <DependentUpon>SmeltSequence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SmeltUnified.resx">
       <DependentUpon>SmeltUnified.cs</DependentUpon>

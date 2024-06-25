@@ -34,6 +34,7 @@
 			this.newVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.label1 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -60,14 +61,14 @@
 			// newVersionToolStripMenuItem
 			// 
 			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
-			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.newVersionToolStripMenuItem.Text = "New Version";
 			this.newVersionToolStripMenuItem.Click += new System.EventHandler(this.newVersionToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -77,16 +78,26 @@
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
 			this.aboutToolStripMenuItem.Text = "About";
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 24);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(255, 13);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "Simatic Markup (Extra letter) Language Tools Unified";
+			// 
 			// SmeltUnified
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "SmeltUnified";
-			this.Text = "SmeltUnified";
+			this.Text = "SMeLT Unified";
 			this.Load += new System.EventHandler(this.SmeltUnified_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
@@ -101,5 +112,6 @@
 		private System.Windows.Forms.ToolStripMenuItem newVersionToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+		private System.Windows.Forms.Label label1;
 	}
 }

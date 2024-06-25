@@ -27,7 +27,7 @@ namespace CSSimaticMLTools
             Properties.Settings.Default.Reload();
             if (Properties.Settings.Default.NewApp == true)
             {
-                Application.Run(new SmeltUnified());
+                Application.Run(new SmeltSequence());
             }
             else
             {
