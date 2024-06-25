@@ -33,7 +33,7 @@ namespace CSSimaticMLTools
             Tuple<string,string,string> info;
             lblCurrentXML.Text = openFileDialog1.FileName;
             info = Program.GetInfo(openFileDialog1.FileName);
-            Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+            Program.GetStepNames(openFileDialog1.FileName, dataGridView1, true);
             lblType.Text = info.Item1;
             lblName.Text = info.Item2;
             lblNumber.Text = info.Item3;
@@ -151,7 +151,7 @@ namespace CSSimaticMLTools
 
         private void btnListGet_Click(object sender, EventArgs e)
         {
-            Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+            Program.GetStepNames(openFileDialog1.FileName, dataGridView1, true);
         }
 
         private void btnBackup_Click(object sender, EventArgs e)
@@ -186,6 +186,12 @@ namespace CSSimaticMLTools
                 }
 
             }
+            //Needs to set the interface variables too not done yet
+            if (e.ColumnIndex == 1) 
+            {
+                //Program.RenameStep(openFileDialog1.FileName, int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView1[e.ColumnIndex,e.RowIndex].Value.ToString());
+				//Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+			}
             
         }
 
@@ -207,7 +213,49 @@ namespace CSSimaticMLTools
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+            if (Properties.Settings.Default.Form1Size.Width == 0)
+            {
+                Properties.Settings.Default.Form1Size = this.Size;
+                Properties.Settings.Default.Save();
+            }
 			newVersionToolStripMenuItem.Checked = Properties.Settings.Default.NewApp;
+            this.Size = Properties.Settings.Default.Form1Size;
+		}
+
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Form1Size = this.Size;
+            Properties.Settings.Default.Save();
+        }
+
+		private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+		{
+            if (e.ColumnIndex != -1 && e.RowIndex != -1 && e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                if (e.ColumnIndex == dataGridView1["TableDescNo", e.RowIndex].ColumnIndex)
+                {
+                    DataGridViewCell c = (sender as DataGridView)[e.ColumnIndex, e.RowIndex];
+                    if (!c.Selected)
+                    {
+                        c.DataGridView.ClearSelection();
+                        c.DataGridView.CurrentCell = c;
+                        c.Selected = true;
+                    }
+                    cmsStepTable.Show(dataGridView1, dataGridView1.PointToClient(Cursor.Position));
+                }
+			}
+		}
+
+		private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            try
+            {
+                Console.WriteLine((cmsStepTable.SourceControl as DataGridView).CurrentCell.OwningRow.Cells[0].Value);
+                int sNo = int.Parse((cmsStepTable.SourceControl as DataGridView).CurrentCell.OwningRow.Cells[0].Value.ToString());
+                //Console.WriteLine(grid.CurrentCell.OwningRow.Cells[0].Value);
+                Program.RemoveDesc(openFileDialog1.FileName, sNo);
+				Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+			} catch (Exception) { }
 		}
 	}
 }

@@ -34,5 +34,17 @@ namespace CSSimaticMLTools.Properties {
                 this["NewApp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size Form1Size {
+            get {
+                return ((global::System.Drawing.Size)(this["Form1Size"]));
+            }
+            set {
+                this["Form1Size"] = value;
+            }
+        }
     }
 }

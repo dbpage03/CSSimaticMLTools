@@ -34,7 +34,19 @@ namespace CSSimaticMLTools
                 Application.Run(new Form1());
             }
         }
-
+        public static Exception XSave(XDocument xmlDoc, string fpath)
+        {
+            try
+            {
+                xmlDoc.Save(fpath);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to Save xml file.\r\n" +  ex.Message,"Failed to Save",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return ex;
+            }
+        }
         public static Tuple<string, string,string> GetInfo(string text)
         {
             string type;
@@ -128,8 +140,11 @@ namespace CSSimaticMLTools
 
                 }
             }
-            xmlDoc.Save(file);
-            MessageBox.Show("Operation Complete", "Operation Complete");
+            if (XSave(xmlDoc, file) == null)
+            {
+                MessageBox.Show("Operation Complete", "Operation Complete");
+            }
+            
         }
         public static void SeqToDescTXT(string fpath)
         {
@@ -300,9 +315,11 @@ namespace CSSimaticMLTools
 
                 }
             }
-            xmlDoc.Save(fpath);
-            MessageBox.Show("Operation Complete", "Operation Complete");
-        }
+			if (XSave(xmlDoc, fpath) == null)
+			{
+				MessageBox.Show("Operation Complete", "Operation Complete");
+			}
+		}
         public static void InStepReplaceX(string fpath)
         {
             string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
@@ -369,9 +386,11 @@ namespace CSSimaticMLTools
                     }
                 }
             }
-            xmlDoc.Save(fpath);
-            MessageBox.Show("Operation Complete", "Operation Complete");
-        }
+			if (XSave(xmlDoc, fpath) == null)
+			{
+				MessageBox.Show("Operation Complete", "Operation Complete");
+			}
+		}
         public static void SNameRDesc(string fpath,DataGridView grid)
         {
             string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
@@ -380,36 +399,44 @@ namespace CSSimaticMLTools
             {
                  foreach (DataGridViewRow row in grid.Rows)
                 {
-                    //Console.WriteLine("E\t" + row.Cells[0].Value.ToString());
-                    if (row.Cells["TableStep"].Value.ToString() == step.Attribute("Number").Value)
+                    if (row.Cells["TableStep"].Value != null)
                     {
-                        Console.WriteLine(step.Attribute("Name").Value);
-                        string desc;
-                        if (row.Cells["TableDesc"].Value != null)
+                        //Console.WriteLine("E\t" + row.Cells[0].Value.ToString());
+                        if (row.Cells["TableStep"].Value.ToString().PadLeft(3, '0') == step.Attribute("Number").Value.PadLeft(3, '0'))
                         {
-                            desc = row.Cells["TableDesc"].Value.ToString();
-                        } else { desc = ""; }
+                            Console.WriteLine(step.Attribute("Name").Value);
+                            string desc;
+                            if (row.Cells["TableDesc"].Value != null)
+                            {
+                                desc = row.Cells["TableDesc"].Value.ToString();
+                            }
+                            else { desc = ""; }
 
-                        if (step.Element(ns + "Actions").Descendants(ns + "MultiLanguageText").Count() > 0)
-                        {
-                            step.Element(ns + "Actions").Descendants(ns + "MultiLanguageText").First().Value = desc;
-                        } else
-                        {
-                            step.Element(ns + "Actions").AddFirst(new XElement(ns + "Title"));
-                            step.Element(ns + "Actions").Element(ns + "Title").AddFirst(new XElement(ns + "MultiLanguageText", desc));
-                            step.Element(ns + "Actions").Element(ns + "Title").Element(ns + "MultiLanguageText").SetAttributeValue("Lang", "en-US");
+                            if (step.Element(ns + "Actions").Descendants(ns + "MultiLanguageText").Count() > 0)
+                            {
+                                step.Element(ns + "Actions").Descendants(ns + "MultiLanguageText").First().Value = desc;
+                            }
+                            else
+                            {
+                                step.Element(ns + "Actions").AddFirst(new XElement(ns + "Title"));
+                                step.Element(ns + "Actions").Element(ns + "Title").AddFirst(new XElement(ns + "MultiLanguageText", desc));
+                                step.Element(ns + "Actions").Element(ns + "Title").Element(ns + "MultiLanguageText").SetAttributeValue("Lang", "en-US");
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
-            xmlDoc.Save(fpath);
-            MessageBox.Show("Operation Complete", "Operation Complete");
+			if (XSave(xmlDoc, fpath) == null)
+			{
+				MessageBox.Show("Operation Complete", "Operation Complete");
+			}
 
-        }
-        public static void GetStepNames(string fpath, DataGridView grid)
+		}
+        public static void GetStepNames(string fpath, DataGridView grid,bool clear = false)
         {
-            grid.Rows.Clear();
+            if (clear) { grid.Rows.Clear(); }
+            
             string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
             XDocument xmlDoc = XDocument.Load(fpath);
             foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
@@ -443,7 +470,21 @@ namespace CSSimaticMLTools
                         }
                     }
                 }
-                grid.Rows.Add(sNo, sName, sDescNo, sDesc);
+                if (clear)
+                {
+                    grid.Rows.Add(sNo, sName, sDescNo, sDesc);
+                } else
+                {
+                    foreach ( DataGridViewRow row in grid.Rows)
+                    {
+                        if (row.Cells["TableStep"].Value.ToString() == sNo || row.Cells["TableName"].Value.ToString() == sName )
+                        {
+                            row.SetValues(sNo, sName, sDescNo, sDesc);
+                            break;
+                        }
+                    }
+                }
+                
             }
         }
         public static int RenumberStep(string fpath,int sNo, int nNo)
@@ -495,13 +536,63 @@ namespace CSSimaticMLTools
             if (nNoValid && stepConn != null)
             {
                 stepConn.SetNo(nNo);
-                stepConn.ReplaceInDoc(xmlDoc).Save(fpath);
-                return nNo;
+				XSave(stepConn.ReplaceInDoc(xmlDoc), fpath);
+				return nNo;
             } else { return sNo; }
 
 
             
         }
+        public static void RenameStep(string fpath, int sNo, string name)
+        {
+			string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+			XDocument xmlDoc = XDocument.Load(fpath);
+            XElement sChg = null;
+            bool valid = true;
+			foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
+            {
+                if (step.Attribute("Number").Value == sNo.ToString())
+                {
+                    sChg = step;
+                }
+                if (step.Attribute("Name").Value == name)
+                {
+                    valid = false; break;
+                }
+            }
+            if (valid && sChg != null && name != "")
+            {
+                sChg.Attribute("Name").SetValue(name);
+                XSave(xmlDoc,fpath);
+            } else { MessageBox.Show("Failed to Change Step Name", "Operation Failed"); }
 
+		}
+        public static void RemoveDesc(string fpath, int sNo)
+        {
+			string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+			XDocument xmlDoc = XDocument.Load(fpath);
+            foreach (XElement step in xmlDoc.Descendants(ns + "Step")) 
+            {
+                if (step.Attribute("Number").Value != sNo.ToString()) { continue; }
+                foreach (XElement action in  step.Descendants(ns + "Action")) 
+                {
+					bool descAction = false;
+                    foreach (XElement token in action.Descendants(ns + "Token"))
+                    {
+						if (token.Attribute("Text").Value.Contains("DescriptorControl"))
+						{
+							descAction = true;
+                            break;
+						}
+					}
+                    if (descAction)
+                    {
+                        action.Remove();
+						XSave(xmlDoc, fpath);
+                        break;
+                    }
+				}
+            }
+		}
     }
 }

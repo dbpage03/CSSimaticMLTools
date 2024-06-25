@@ -1,0 +1,11 @@
+﻿New Version Structure
+	Global Step Classes
+	Working file in userdata
+	export to... wincc, tia?
+	sequence visualization
+	folder structure and file browser
+		open folder
+	live update in all cells
+	import sequence snippet (like reset sequence)
+	used stepNo list
+	used Title List

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,6 +38,7 @@
 			this.lblCurrentXML = new System.Windows.Forms.Label();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.newVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +55,6 @@
 			this.grpTable = new System.Windows.Forms.GroupBox();
 			this.btnBackup = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnListGet = new System.Windows.Forms.Button();
 			this.btnListClear = new System.Windows.Forms.Button();
 			this.btnListPaste = new System.Windows.Forms.Button();
@@ -73,7 +71,13 @@
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.button4 = new System.Windows.Forms.Button();
-			this.newVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmsStepTable = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+			this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip1.SuspendLayout();
 			this.tabcScripts.SuspendLayout();
 			this.tabSeq.SuspendLayout();
@@ -83,6 +87,8 @@
 			this.tabFunction.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
+			this.cmsStepTable.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// openFileDialog1
@@ -93,7 +99,7 @@
 			// 
 			// btnChooseXML
 			// 
-			this.btnChooseXML.Location = new System.Drawing.Point(847, 3);
+			this.btnChooseXML.Location = new System.Drawing.Point(845, 3);
 			this.btnChooseXML.Name = "btnChooseXML";
 			this.btnChooseXML.Size = new System.Drawing.Size(88, 21);
 			this.btnChooseXML.TabIndex = 0;
@@ -110,7 +116,7 @@
 			this.lblCurrentXML.Margin = new System.Windows.Forms.Padding(3);
 			this.lblCurrentXML.MinimumSize = new System.Drawing.Size(400, 20);
 			this.lblCurrentXML.Name = "lblCurrentXML";
-			this.lblCurrentXML.Size = new System.Drawing.Size(767, 20);
+			this.lblCurrentXML.Size = new System.Drawing.Size(765, 20);
 			this.lblCurrentXML.TabIndex = 1;
 			this.lblCurrentXML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -134,10 +140,17 @@
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
+			// newVersionToolStripMenuItem
+			// 
+			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
+			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+			this.newVersionToolStripMenuItem.Text = "New Version";
+			this.newVersionToolStripMenuItem.Click += new System.EventHandler(this.newVersionToolStripMenuItem_Click);
+			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -348,34 +361,7 @@
 			this.dataGridView1.TabIndex = 15;
 			this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
 			this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-			// 
-			// TableStep
-			// 
-			this.TableStep.HeaderText = "Step";
-			this.TableStep.MinimumWidth = 40;
-			this.TableStep.Name = "TableStep";
-			this.TableStep.Width = 43;
-			// 
-			// TableName
-			// 
-			this.TableName.HeaderText = "Name";
-			this.TableName.MinimumWidth = 150;
-			this.TableName.Name = "TableName";
-			this.TableName.ReadOnly = true;
-			this.TableName.Width = 150;
-			// 
-			// TableDescNo
-			// 
-			this.TableDescNo.HeaderText = "Desc #";
-			this.TableDescNo.MinimumWidth = 40;
-			this.TableDescNo.Name = "TableDescNo";
-			this.TableDescNo.Width = 40;
-			// 
-			// TableDesc
-			// 
-			this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.TableDesc.HeaderText = "Desc";
-			this.TableDesc.Name = "TableDesc";
+			this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
 			// 
 			// btnListGet
 			// 
@@ -545,7 +531,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.435207F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.56479F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.btnChooseXML, 2, 0);
 			this.tableLayoutPanel1.Controls.Add(this.lblCurrentXML, 1, 0);
@@ -586,12 +572,51 @@
 			this.button4.UseVisualStyleBackColor = true;
 			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
-			// newVersionToolStripMenuItem
+			// cmsStepTable
 			// 
-			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
-			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.newVersionToolStripMenuItem.Text = "New Version";
-			this.newVersionToolStripMenuItem.Click += new System.EventHandler(this.newVersionToolStripMenuItem_Click);
+			this.cmsStepTable.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+			this.cmsStepTable.Name = "cmsStepTable";
+			this.cmsStepTable.Size = new System.Drawing.Size(108, 26);
+			// 
+			// deleteToolStripMenuItem
+			// 
+			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.deleteToolStripMenuItem.Text = "Delete";
+			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+			// 
+			// fileSystemWatcher1
+			// 
+			this.fileSystemWatcher1.EnableRaisingEvents = true;
+			this.fileSystemWatcher1.SynchronizingObject = this;
+			// 
+			// TableStep
+			// 
+			this.TableStep.HeaderText = "Step";
+			this.TableStep.MinimumWidth = 40;
+			this.TableStep.Name = "TableStep";
+			this.TableStep.Width = 43;
+			// 
+			// TableName
+			// 
+			this.TableName.HeaderText = "Name";
+			this.TableName.MinimumWidth = 150;
+			this.TableName.Name = "TableName";
+			this.TableName.Width = 150;
+			// 
+			// TableDescNo
+			// 
+			this.TableDescNo.HeaderText = "Desc #";
+			this.TableDescNo.MinimumWidth = 40;
+			this.TableDescNo.Name = "TableDescNo";
+			this.TableDescNo.Width = 40;
+			// 
+			// TableDesc
+			// 
+			this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.TableDesc.HeaderText = "Desc";
+			this.TableDesc.Name = "TableDesc";
 			// 
 			// Form1
 			// 
@@ -609,6 +634,7 @@
 			this.Name = "Form1";
 			this.Text = "SimaticML Tools";
 			this.Load += new System.EventHandler(this.Form1_Load);
+			this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.tabcScripts.ResumeLayout(false);
@@ -619,6 +645,8 @@
 			this.tabFunction.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
+			this.cmsStepTable.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -663,11 +691,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableStep;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableDescNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableDesc;
 		private System.Windows.Forms.ToolStripMenuItem newVersionToolStripMenuItem;
+		private System.Windows.Forms.ContextMenuStrip cmsStepTable;
+		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+		private System.IO.FileSystemWatcher fileSystemWatcher1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TableStep;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TableDescNo;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TableDesc;
 	}
 }
 
