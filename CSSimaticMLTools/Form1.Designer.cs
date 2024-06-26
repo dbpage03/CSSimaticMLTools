@@ -55,6 +55,10 @@
 			this.grpTable = new System.Windows.Forms.GroupBox();
 			this.btnBackup = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnListGet = new System.Windows.Forms.Button();
 			this.btnListClear = new System.Windows.Forms.Button();
 			this.btnListPaste = new System.Windows.Forms.Button();
@@ -74,10 +78,8 @@
 			this.cmsStepTable = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-			this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnFixValves = new System.Windows.Forms.Button();
+			this.btnAddTimeouts = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabcScripts.SuspendLayout();
 			this.tabSeq.SuspendLayout();
@@ -99,7 +101,7 @@
 			// 
 			// btnChooseXML
 			// 
-			this.btnChooseXML.Location = new System.Drawing.Point(845, 3);
+			this.btnChooseXML.Location = new System.Drawing.Point(844, 3);
 			this.btnChooseXML.Name = "btnChooseXML";
 			this.btnChooseXML.Size = new System.Drawing.Size(88, 21);
 			this.btnChooseXML.TabIndex = 0;
@@ -116,7 +118,7 @@
 			this.lblCurrentXML.Margin = new System.Windows.Forms.Padding(3);
 			this.lblCurrentXML.MinimumSize = new System.Drawing.Size(400, 20);
 			this.lblCurrentXML.Name = "lblCurrentXML";
-			this.lblCurrentXML.Size = new System.Drawing.Size(765, 20);
+			this.lblCurrentXML.Size = new System.Drawing.Size(764, 20);
 			this.lblCurrentXML.TabIndex = 1;
 			this.lblCurrentXML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -363,6 +365,33 @@
 			this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
 			this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
 			// 
+			// TableStep
+			// 
+			this.TableStep.HeaderText = "Step";
+			this.TableStep.MinimumWidth = 40;
+			this.TableStep.Name = "TableStep";
+			this.TableStep.Width = 43;
+			// 
+			// TableName
+			// 
+			this.TableName.HeaderText = "Name";
+			this.TableName.MinimumWidth = 150;
+			this.TableName.Name = "TableName";
+			this.TableName.Width = 150;
+			// 
+			// TableDescNo
+			// 
+			this.TableDescNo.HeaderText = "Desc #";
+			this.TableDescNo.MinimumWidth = 40;
+			this.TableDescNo.Name = "TableDescNo";
+			this.TableDescNo.Width = 40;
+			// 
+			// TableDesc
+			// 
+			this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.TableDesc.HeaderText = "Desc";
+			this.TableDesc.Name = "TableDesc";
+			// 
 			// btnListGet
 			// 
 			this.btnListGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -403,6 +432,8 @@
 			// 
 			this.grpGRAPHScripts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+			this.grpGRAPHScripts.Controls.Add(this.btnAddTimeouts);
+			this.grpGRAPHScripts.Controls.Add(this.btnFixValves);
 			this.grpGRAPHScripts.Controls.Add(this.button2);
 			this.grpGRAPHScripts.Controls.Add(this.button3);
 			this.grpGRAPHScripts.Controls.Add(this.button1);
@@ -438,7 +469,7 @@
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(161, 23);
 			this.button3.TabIndex = 16;
-			this.button3.Text = "By Name Do Desc";
+			this.button3.Text = "Write Desc\'s";
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
@@ -531,7 +562,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.435207F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.56479F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.btnChooseXML, 2, 0);
 			this.tableLayoutPanel1.Controls.Add(this.lblCurrentXML, 1, 0);
@@ -591,32 +622,25 @@
 			this.fileSystemWatcher1.EnableRaisingEvents = true;
 			this.fileSystemWatcher1.SynchronizingObject = this;
 			// 
-			// TableStep
+			// btnFixValves
 			// 
-			this.TableStep.HeaderText = "Step";
-			this.TableStep.MinimumWidth = 40;
-			this.TableStep.Name = "TableStep";
-			this.TableStep.Width = 43;
+			this.btnFixValves.Location = new System.Drawing.Point(6, 135);
+			this.btnFixValves.Name = "btnFixValves";
+			this.btnFixValves.Size = new System.Drawing.Size(161, 23);
+			this.btnFixValves.TabIndex = 18;
+			this.btnFixValves.Text = "Fix Valves";
+			this.btnFixValves.UseVisualStyleBackColor = true;
+			this.btnFixValves.Click += new System.EventHandler(this.btnFixValves_Click);
 			// 
-			// TableName
+			// btnAddTimeouts
 			// 
-			this.TableName.HeaderText = "Name";
-			this.TableName.MinimumWidth = 150;
-			this.TableName.Name = "TableName";
-			this.TableName.Width = 150;
-			// 
-			// TableDescNo
-			// 
-			this.TableDescNo.HeaderText = "Desc #";
-			this.TableDescNo.MinimumWidth = 40;
-			this.TableDescNo.Name = "TableDescNo";
-			this.TableDescNo.Width = 40;
-			// 
-			// TableDesc
-			// 
-			this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.TableDesc.HeaderText = "Desc";
-			this.TableDesc.Name = "TableDesc";
+			this.btnAddTimeouts.Location = new System.Drawing.Point(6, 164);
+			this.btnAddTimeouts.Name = "btnAddTimeouts";
+			this.btnAddTimeouts.Size = new System.Drawing.Size(161, 23);
+			this.btnAddTimeouts.TabIndex = 19;
+			this.btnAddTimeouts.Text = "Add Timeouts";
+			this.btnAddTimeouts.UseVisualStyleBackColor = true;
+			this.btnAddTimeouts.Click += new System.EventHandler(this.btnAddTimeouts_Click);
 			// 
 			// Form1
 			// 
@@ -699,6 +723,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableDescNo;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableDesc;
+		private System.Windows.Forms.Button btnFixValves;
+		private System.Windows.Forms.Button btnAddTimeouts;
 	}
 }
 

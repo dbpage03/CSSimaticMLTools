@@ -497,7 +497,7 @@ namespace CSSimaticMLTools
             if (nNo < 0 || nNo > 9999) { return sNo; }
             foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
             {
-                XElement connTo = null;
+				XElement connTo = null;
                 XElement connFrom = null;
                 XElement staticMember = null;
                 foreach (XElement conn in xmlDoc.Descendants(ns + "Connection"))
@@ -535,7 +535,9 @@ namespace CSSimaticMLTools
             }
             if (nNoValid && stepConn != null)
             {
-                stepConn.SetNo(nNo);
+				//Console.Write(stepConn.ogStep.Element(ns + "Supervisions").Element(ns + "Supervision").ToString());
+				foreach (XElement component in stepConn.ogStep.Descendants()) { Console.WriteLine(component.ToString()); }
+				stepConn.SetNo(nNo);
 				XSave(stepConn.ReplaceInDoc(xmlDoc), fpath);
 				return nNo;
             } else { return sNo; }
@@ -562,8 +564,27 @@ namespace CSSimaticMLTools
             }
             if (valid && sChg != null && name != "")
             {
-                sChg.Attribute("Name").SetValue(name);
-                XSave(xmlDoc,fpath);
+                bool memberSet = false;
+				foreach (XElement member in xmlDoc.Descendants("{http://www.siemens.com/automation/Openness/SW/Interface/v5}" + "Member"))
+				{
+					if (member.Attribute("Datatype").Value == "G7_StepPlus_V6")
+					{
+                        foreach (XElement subMem in member.Descendants("{http://www.siemens.com/automation/Openness/SW/Interface/v5}" + "Member"))
+                        {
+                            if (subMem.Attribute("Datatype").Value == "Int")
+                            {
+                                if (subMem.Descendants().First().Value == sChg.Attribute("Number").Value)
+                                {
+                                    member.Attribute("Name").SetValue(name);
+                                    memberSet = true;
+                                }
+                            }
+                            break;
+                        }
+					}
+				}
+                if (memberSet) { sChg.Attribute("Name").SetValue(name); XSave(xmlDoc, fpath); }
+                
             } else { MessageBox.Show("Failed to Change Step Name", "Operation Failed"); }
 
 		}
@@ -593,6 +614,128 @@ namespace CSSimaticMLTools
                     }
 				}
             }
+		}
+        public static void FixValveSteps(string fpath)
+        {
+			string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+			XDocument xmlDoc = XDocument.Load(fpath);
+
+            foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
+            {
+                string valve = "";
+				XElement sv = XElement.Parse(
+					"<Supervision ProgrammingLanguage=\"LAD\" xmlns=\"http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5\">" +
+						"<Title>" +
+							"<MultiLanguageText Lang=\"en-US\">Step Timeout</MultiLanguageText>" +
+						"</Title>" +
+						"<FlgNet>" +
+							"<Parts>" +
+								"<Access Scope=\"LocalVariable\" UId=\"21\">" +
+									"<Symbol>" +
+										"<Component Name=\"WeeWoo\" />" +
+										"<Component Name=\"Valve\" />" +
+										"<Component Name=\"collectError\" />" +
+									"</Symbol>" +
+								"</Access>" +
+								"<Part Name=\"Contact\" UId=\"22\" />" +
+								"<Part Name=\"SvCoil\" UId=\"23\" />" +
+							"</Parts>" +
+							"<Wires>" +
+								"<Wire UId=\"24\">" +
+									"<Powerrail />" +
+									"<NameCon UId=\"22\" Name=\"in\" />" +
+								"</Wire>" +
+								"<Wire UId=\"25\">" +
+									"<IdentCon UId=\"21\" />" +
+									"<NameCon UId=\"22\" Name=\"operand\" />" +
+								"</Wire>" +
+								"<Wire UId=\"26\">" +
+									"<NameCon UId=\"22\" Name=\"out\" />" +
+									"<NameCon UId=\"23\" Name=\"in\" />" +
+								"</Wire>" +
+							"</Wires>" +
+						"</FlgNet>" +
+					"</Supervision>");
+				foreach (XElement action in step.Descendants(ns + "Action"))
+                {
+                    if (action.HasAttributes && action.Attribute("Qualifier").Value == "D")
+                    {
+                        bool liAutAction = false;
+                        foreach (XElement token in action.Descendants()) 
+                        {
+                            if (token.Attribute("Text").Value.Contains("LiAut"))
+                            {
+                                liAutAction = true;
+
+                            }
+                            if (liAutAction && token.Attribute("Text").Value.Contains("t#"))
+                            {
+                                token.SetAttributeValue("Text","t#2s");
+                                action.SetAttributeValue("Qualifier", "L");
+                            }
+                        }
+                    }
+                    foreach (XElement token in action.Descendants())
+                    {
+                        if (token.Attribute("Text").Value.EndsWith(".LiAutOpen") || (token.Attribute("Text").Value.EndsWith(".LiAutClose")))
+                        {
+                            valve = token.Attribute("Text").Value.Replace(".LiAutOpen", "").Replace(".LiAutClose", "").Substring(1);
+                        }
+                    }
+				}
+                if (valve != "")
+                {
+                    foreach (XElement component in sv.Descendants()) { Console.WriteLine(component.ToString()); }
+                    sv.Descendants(ns + "Component").First().Attribute("Name").SetValue(valve);
+                    step.Element(ns + "Supervisions").RemoveAll();
+                    step.Element(ns + "Supervisions").Add(sv);
+                }
+				
+
+			}
+			if (XSave(xmlDoc, fpath) == null)
+			{
+				MessageBox.Show("Operation Complete", "Operation Complete");
+			}
+		}
+        public static void AddStepTimeouts(string fpath)
+        {
+			string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+			XDocument xmlDoc = XDocument.Load(fpath);
+            XElement stR;
+            XElement stV;
+
+			string prefix = Interaction.InputBox("Enter the path of StepTimeout.\nEx. #V1411_Data.HMI_StepTimeout, #StepTimeout", "Enter StepTimeout Path","#");
+            if (prefix != "")
+            {
+                stR = XElement.Parse("<Action Event=\"S1\" Qualifier=\"R\" xmlns=\"http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5\"><Token Text=\"" + prefix + "\" /><Token Text=\"&#xA;\" /></Action>");
+                stV = XElement.Parse("<Action Event=\"V1\" Qualifier=\"S\" xmlns=\"http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5\"><Token Text=\"" + prefix + "\" /><Token Text=\"&#xA;\" /></Action>");
+            } else { return; }
+			foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
+            {
+                foreach (XElement action in  step.Descendants(ns + "Action")) 
+                {
+                    foreach (XElement token in action.Descendants(ns + "Token"))
+                    {
+                        if (token.Attribute("Text").Value.Contains("StepTimeout"))
+                        {
+                            action.Remove();
+                            break;
+                        }
+                    }
+                }
+				foreach (XElement access in step.Element(ns + "Supervisions").Descendants(ns + "Access"))
+                {
+                    step.Element(ns + "Actions").LastNode.AddBeforeSelf(stR);
+					step.Element(ns + "Actions").LastNode.AddBeforeSelf(stV);
+                    break;
+				}
+					
+			}
+			if (XSave(xmlDoc, fpath) == null)
+			{
+				MessageBox.Show("Operation Complete", "Operation Complete");
+			}
 		}
     }
 }

@@ -164,7 +164,41 @@ namespace CSSimaticMLTools
         private void button4_Click(object sender, EventArgs e)
         {
             StepView frmStep = new StepView();
-            frmStep.Show();
+			XElement sv = XElement.Parse(
+					"<Supervision ProgrammingLanguage=\"LAD\" xmlns=\"{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}\">" +
+                        "<Title>" +
+						    "<MultiLanguageText Lang=\"en-US\">Step Timeout</MultiLanguageText>" +
+					    "</Title>" +
+					    "<FlgNet>" +
+						    "<Parts>" +
+							    "<Access Scope=\"LocalVariable\" UId=\"21\">" +
+								    "<Symbol>" +
+									    "<Component Name=\"WeeWoo\" />" +
+									    "<Component Name=\"Valve\" />" +
+									    "<Component Name=\"collectError\" />" +
+								    "</Symbol>" +
+							    "</Access>" +
+							    "<Part Name=\"Contact\" UId=\"22\" />" +
+							    "<Part Name=\"SvCoil\" UId=\"23\" />" +
+						    "</Parts>" +
+						    "<Wires>" +
+							    "<Wire UId=\"24\">" +
+								    "<Powerrail />" +
+								    "<NameCon UId=\"22\" Name=\"in\" />" +
+							    "</Wire>" +
+							    "<Wire UId=\"25\">" +
+								    "<IdentCon UId=\"21\" />" +
+								    "<NameCon UId=\"22\" Name=\"operand\" />" +
+							    "</Wire>" +
+							    "<Wire UId=\"26\">" +
+								    "<NameCon UId=\"22\" Name=\"out\" />" +
+								    "<NameCon UId=\"23\" Name=\"in\" />" +
+							    "</Wire>" +
+						    "</Wires>" +
+						"</FlgNet>" +
+                    "</Supervision>");
+            Console.Write( sv.ToString() );
+			frmStep.Show();
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -189,8 +223,8 @@ namespace CSSimaticMLTools
             //Needs to set the interface variables too not done yet
             if (e.ColumnIndex == 1) 
             {
-                //Program.RenameStep(openFileDialog1.FileName, int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView1[e.ColumnIndex,e.RowIndex].Value.ToString());
-				//Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+                Program.RenameStep(openFileDialog1.FileName, int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView1[e.ColumnIndex,e.RowIndex].Value.ToString());
+				Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
 			}
             
         }
@@ -256,6 +290,16 @@ namespace CSSimaticMLTools
                 Program.RemoveDesc(openFileDialog1.FileName, sNo);
 				Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
 			} catch (Exception) { }
+		}
+
+		private void btnFixValves_Click(object sender, EventArgs e)
+		{
+            Program.FixValveSteps(openFileDialog1.FileName);
+		}
+
+		private void btnAddTimeouts_Click(object sender, EventArgs e)
+		{
+            Program.AddStepTimeouts(openFileDialog1.FileName);
 		}
 	}
 }
