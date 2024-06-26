@@ -98,6 +98,7 @@
     <Compile Include="ScriptHelp.Designer.cs">
       <DependentUpon>ScriptHelp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SmeltSequence.cs">
       <SubType>Form</SubType>
     </Compile>

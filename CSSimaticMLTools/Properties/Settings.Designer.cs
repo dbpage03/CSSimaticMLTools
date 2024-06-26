@@ -46,5 +46,17 @@ namespace CSSimaticMLTools.Properties {
                 this["Form1Size"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FileTreePath {
+            get {
+                return ((string)(this["FileTreePath"]));
+            }
+            set {
+                this["FileTreePath"] = value;
+            }
+        }
     }
 }
