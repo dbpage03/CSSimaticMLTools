@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSSimaticMLTools.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -323,6 +324,21 @@ namespace CSSimaticMLTools
                     dataGridView1_CellEndEdit(sender, mArg);
                 }
             }
+		}
+
+		private void btnWriteDescHelp_Click(object sender, EventArgs e)
+		{
+			ScriptHelp frmHelp = new ScriptHelp();
+			frmHelp.lblText.Text = "This script writes all of the Descriptions in the table to file. Any changes made in that column will not be saved unless this is pressed.";
+			frmHelp.Show(this);
+		}
+
+		private void btnStepGridHelp_Click(object sender, EventArgs e)
+		{
+			ScriptHelp frmHelp = new ScriptHelp();
+			frmHelp.lblText.Text = "This table displays all the steps in a GRAPH block. Step #, Name, Desc #, and Desc Text can all be changed by editing the cells. New steps cannot be added, nor can step actions be directly edited. Changes in the first 3 columns save automatically, the Description column must be saved with the \"Write Desc's\" button.";
+            frmHelp.picPicture1.Image = Resources.StepGrid;
+            frmHelp.Show(this);
 		}
 	}
 }

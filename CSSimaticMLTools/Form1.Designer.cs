@@ -55,17 +55,13 @@
 			this.grpTable = new System.Windows.Forms.GroupBox();
 			this.btnBackup = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnListGet = new System.Windows.Forms.Button();
 			this.btnListClear = new System.Windows.Forms.Button();
 			this.btnListPaste = new System.Windows.Forms.Button();
 			this.grpGRAPHScripts = new System.Windows.Forms.GroupBox();
 			this.btnAddTimeouts = new System.Windows.Forms.Button();
 			this.btnFixValves = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
+			this.btnWriteDescHelp = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.btnScptSeq3 = new System.Windows.Forms.Button();
@@ -80,6 +76,11 @@
 			this.cmsStepTable = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+			this.TableStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableDescNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TableDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnStepGridHelp = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabcScripts.SuspendLayout();
 			this.tabSeq.SuspendLayout();
@@ -144,15 +145,16 @@
 			// 
 			// newVersionToolStripMenuItem
 			// 
+			this.newVersionToolStripMenuItem.Enabled = false;
 			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
-			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.newVersionToolStripMenuItem.Text = "New Version";
 			this.newVersionToolStripMenuItem.Click += new System.EventHandler(this.newVersionToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -167,7 +169,7 @@
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.aboutToolStripMenuItem.Text = "About";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
 			// 
@@ -297,6 +299,7 @@
 			this.grpTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.grpTable.Controls.Add(this.btnStepGridHelp);
 			this.grpTable.Controls.Add(this.btnBackup);
 			this.grpTable.Controls.Add(this.dataGridView1);
 			this.grpTable.Controls.Add(this.btnListGet);
@@ -314,7 +317,7 @@
 			// 
 			this.btnBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnBackup.ForeColor = System.Drawing.Color.Black;
-			this.btnBackup.Location = new System.Drawing.Point(249, 280);
+			this.btnBackup.Location = new System.Drawing.Point(168, 280);
 			this.btnBackup.Name = "btnBackup";
 			this.btnBackup.Size = new System.Drawing.Size(75, 23);
 			this.btnBackup.TabIndex = 20;
@@ -368,42 +371,15 @@
 			this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
 			this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
 			// 
-			// TableStep
-			// 
-			this.TableStep.HeaderText = "Step";
-			this.TableStep.MinimumWidth = 40;
-			this.TableStep.Name = "TableStep";
-			this.TableStep.Width = 43;
-			// 
-			// TableName
-			// 
-			this.TableName.HeaderText = "Name";
-			this.TableName.MinimumWidth = 150;
-			this.TableName.Name = "TableName";
-			this.TableName.Width = 150;
-			// 
-			// TableDescNo
-			// 
-			this.TableDescNo.HeaderText = "Desc #";
-			this.TableDescNo.MinimumWidth = 40;
-			this.TableDescNo.Name = "TableDescNo";
-			this.TableDescNo.Width = 40;
-			// 
-			// TableDesc
-			// 
-			this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.TableDesc.HeaderText = "Desc";
-			this.TableDesc.Name = "TableDesc";
-			// 
 			// btnListGet
 			// 
 			this.btnListGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnListGet.ForeColor = System.Drawing.Color.Black;
-			this.btnListGet.Location = new System.Drawing.Point(168, 280);
+			this.btnListGet.Location = new System.Drawing.Point(87, 280);
 			this.btnListGet.Name = "btnListGet";
 			this.btnListGet.Size = new System.Drawing.Size(75, 23);
 			this.btnListGet.TabIndex = 19;
-			this.btnListGet.Text = "Get Names";
+			this.btnListGet.Text = "Refresh";
 			this.btnListGet.UseVisualStyleBackColor = true;
 			this.btnListGet.Click += new System.EventHandler(this.btnListGet_Click);
 			// 
@@ -411,17 +387,19 @@
 			// 
 			this.btnListClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnListClear.ForeColor = System.Drawing.Color.Black;
-			this.btnListClear.Location = new System.Drawing.Point(87, 280);
+			this.btnListClear.Location = new System.Drawing.Point(249, 280);
 			this.btnListClear.Name = "btnListClear";
 			this.btnListClear.Size = new System.Drawing.Size(75, 23);
 			this.btnListClear.TabIndex = 18;
 			this.btnListClear.Text = "Clear";
 			this.btnListClear.UseVisualStyleBackColor = true;
+			this.btnListClear.Visible = false;
 			this.btnListClear.Click += new System.EventHandler(this.btnListClear_Click);
 			// 
 			// btnListPaste
 			// 
 			this.btnListPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnListPaste.Enabled = false;
 			this.btnListPaste.ForeColor = System.Drawing.Color.Black;
 			this.btnListPaste.Location = new System.Drawing.Point(6, 280);
 			this.btnListPaste.Name = "btnListPaste";
@@ -437,7 +415,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.grpGRAPHScripts.Controls.Add(this.btnAddTimeouts);
 			this.grpGRAPHScripts.Controls.Add(this.btnFixValves);
-			this.grpGRAPHScripts.Controls.Add(this.button2);
+			this.grpGRAPHScripts.Controls.Add(this.btnWriteDescHelp);
 			this.grpGRAPHScripts.Controls.Add(this.button3);
 			this.grpGRAPHScripts.Controls.Add(this.button1);
 			this.grpGRAPHScripts.Controls.Add(this.btnScptSeq3);
@@ -461,6 +439,7 @@
 			this.btnAddTimeouts.TabIndex = 19;
 			this.btnAddTimeouts.Text = "Add Timeouts";
 			this.btnAddTimeouts.UseVisualStyleBackColor = true;
+			this.btnAddTimeouts.Visible = false;
 			this.btnAddTimeouts.Click += new System.EventHandler(this.btnAddTimeouts_Click);
 			// 
 			// btnFixValves
@@ -471,20 +450,22 @@
 			this.btnFixValves.TabIndex = 18;
 			this.btnFixValves.Text = "Fix Valves";
 			this.btnFixValves.UseVisualStyleBackColor = true;
+			this.btnFixValves.Visible = false;
 			this.btnFixValves.Click += new System.EventHandler(this.btnFixValves_Click);
 			// 
-			// button2
+			// btnWriteDescHelp
 			// 
-			this.button2.BackColor = System.Drawing.Color.DodgerBlue;
-			this.button2.Cursor = System.Windows.Forms.Cursors.Default;
-			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.button2.Location = new System.Drawing.Point(173, 107);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(21, 22);
-			this.button2.TabIndex = 17;
-			this.button2.Text = "?";
-			this.button2.UseVisualStyleBackColor = false;
+			this.btnWriteDescHelp.BackColor = System.Drawing.Color.DodgerBlue;
+			this.btnWriteDescHelp.Cursor = System.Windows.Forms.Cursors.Default;
+			this.btnWriteDescHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnWriteDescHelp.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.btnWriteDescHelp.Location = new System.Drawing.Point(173, 107);
+			this.btnWriteDescHelp.Name = "btnWriteDescHelp";
+			this.btnWriteDescHelp.Size = new System.Drawing.Size(21, 22);
+			this.btnWriteDescHelp.TabIndex = 17;
+			this.btnWriteDescHelp.Text = "?";
+			this.btnWriteDescHelp.UseVisualStyleBackColor = false;
+			this.btnWriteDescHelp.Click += new System.EventHandler(this.btnWriteDescHelp_Click);
 			// 
 			// button3
 			// 
@@ -500,6 +481,7 @@
 			// 
 			this.button1.BackColor = System.Drawing.Color.DodgerBlue;
 			this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+			this.button1.Enabled = false;
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.button1.Location = new System.Drawing.Point(173, 78);
@@ -511,6 +493,7 @@
 			// 
 			// btnScptSeq3
 			// 
+			this.btnScptSeq3.Enabled = false;
 			this.btnScptSeq3.Location = new System.Drawing.Point(6, 77);
 			this.btnScptSeq3.Name = "btnScptSeq3";
 			this.btnScptSeq3.Size = new System.Drawing.Size(161, 23);
@@ -624,6 +607,7 @@
 			this.button4.TabIndex = 17;
 			this.button4.Text = "button4";
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Visible = false;
 			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// cmsStepTable
@@ -644,6 +628,48 @@
 			// 
 			this.fileSystemWatcher1.EnableRaisingEvents = true;
 			this.fileSystemWatcher1.SynchronizingObject = this;
+			// 
+			// TableStep
+			// 
+			this.TableStep.HeaderText = "Step";
+			this.TableStep.MinimumWidth = 40;
+			this.TableStep.Name = "TableStep";
+			this.TableStep.Width = 43;
+			// 
+			// TableName
+			// 
+			this.TableName.HeaderText = "Name";
+			this.TableName.MinimumWidth = 150;
+			this.TableName.Name = "TableName";
+			this.TableName.Width = 150;
+			// 
+			// TableDescNo
+			// 
+			this.TableDescNo.HeaderText = "Desc #";
+			this.TableDescNo.MinimumWidth = 40;
+			this.TableDescNo.Name = "TableDescNo";
+			this.TableDescNo.Width = 40;
+			// 
+			// TableDesc
+			// 
+			this.TableDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.TableDesc.HeaderText = "Description";
+			this.TableDesc.Name = "TableDesc";
+			// 
+			// btnStepGridHelp
+			// 
+			this.btnStepGridHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnStepGridHelp.BackColor = System.Drawing.Color.DodgerBlue;
+			this.btnStepGridHelp.Cursor = System.Windows.Forms.Cursors.Default;
+			this.btnStepGridHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnStepGridHelp.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.btnStepGridHelp.Location = new System.Drawing.Point(463, 280);
+			this.btnStepGridHelp.Name = "btnStepGridHelp";
+			this.btnStepGridHelp.Size = new System.Drawing.Size(21, 22);
+			this.btnStepGridHelp.TabIndex = 20;
+			this.btnStepGridHelp.Text = "?";
+			this.btnStepGridHelp.UseVisualStyleBackColor = false;
+			this.btnStepGridHelp.Click += new System.EventHandler(this.btnStepGridHelp_Click);
 			// 
 			// Form1
 			// 
@@ -707,7 +733,7 @@
         private System.Windows.Forms.Button btnScptSeq2Help;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnScptSeq3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnWriteDescHelp;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnListPaste;
@@ -722,12 +748,13 @@
 		private System.Windows.Forms.ContextMenuStrip cmsStepTable;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.IO.FileSystemWatcher fileSystemWatcher1;
+		private System.Windows.Forms.Button btnFixValves;
+		private System.Windows.Forms.Button btnAddTimeouts;
+		private System.Windows.Forms.Button btnStepGridHelp;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableStep;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableDescNo;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableDesc;
-		private System.Windows.Forms.Button btnFixValves;
-		private System.Windows.Forms.Button btnAddTimeouts;
 	}
 }
 
