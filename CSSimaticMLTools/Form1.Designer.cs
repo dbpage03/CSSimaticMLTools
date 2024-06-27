@@ -63,6 +63,8 @@
 			this.btnListClear = new System.Windows.Forms.Button();
 			this.btnListPaste = new System.Windows.Forms.Button();
 			this.grpGRAPHScripts = new System.Windows.Forms.GroupBox();
+			this.btnAddTimeouts = new System.Windows.Forms.Button();
+			this.btnFixValves = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -78,8 +80,6 @@
 			this.cmsStepTable = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-			this.btnFixValves = new System.Windows.Forms.Button();
-			this.btnAddTimeouts = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabcScripts.SuspendLayout();
 			this.tabSeq.SuspendLayout();
@@ -101,7 +101,7 @@
 			// 
 			// btnChooseXML
 			// 
-			this.btnChooseXML.Location = new System.Drawing.Point(844, 3);
+			this.btnChooseXML.Location = new System.Drawing.Point(843, 3);
 			this.btnChooseXML.Name = "btnChooseXML";
 			this.btnChooseXML.Size = new System.Drawing.Size(88, 21);
 			this.btnChooseXML.TabIndex = 0;
@@ -114,7 +114,7 @@
 			this.lblCurrentXML.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblCurrentXML.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.lblCurrentXML.Location = new System.Drawing.Point(74, 3);
+			this.lblCurrentXML.Location = new System.Drawing.Point(73, 3);
 			this.lblCurrentXML.Margin = new System.Windows.Forms.Padding(3);
 			this.lblCurrentXML.MinimumSize = new System.Drawing.Size(400, 20);
 			this.lblCurrentXML.Name = "lblCurrentXML";
@@ -178,7 +178,7 @@
 			this.label1.Location = new System.Drawing.Point(3, 3);
 			this.label1.Margin = new System.Windows.Forms.Padding(3);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(65, 20);
+			this.label1.Size = new System.Drawing.Size(64, 20);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Current File";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -324,6 +324,8 @@
 			// 
 			// dataGridView1
 			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -364,6 +366,7 @@
 			this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
 			this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
 			this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
+			this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
 			// 
 			// TableStep
 			// 
@@ -449,6 +452,26 @@
 			this.grpGRAPHScripts.TabIndex = 12;
 			this.grpGRAPHScripts.TabStop = false;
 			this.grpGRAPHScripts.Text = "Scripts";
+			// 
+			// btnAddTimeouts
+			// 
+			this.btnAddTimeouts.Location = new System.Drawing.Point(6, 164);
+			this.btnAddTimeouts.Name = "btnAddTimeouts";
+			this.btnAddTimeouts.Size = new System.Drawing.Size(161, 23);
+			this.btnAddTimeouts.TabIndex = 19;
+			this.btnAddTimeouts.Text = "Add Timeouts";
+			this.btnAddTimeouts.UseVisualStyleBackColor = true;
+			this.btnAddTimeouts.Click += new System.EventHandler(this.btnAddTimeouts_Click);
+			// 
+			// btnFixValves
+			// 
+			this.btnFixValves.Location = new System.Drawing.Point(6, 135);
+			this.btnFixValves.Name = "btnFixValves";
+			this.btnFixValves.Size = new System.Drawing.Size(161, 23);
+			this.btnFixValves.TabIndex = 18;
+			this.btnFixValves.Text = "Fix Valves";
+			this.btnFixValves.UseVisualStyleBackColor = true;
+			this.btnFixValves.Click += new System.EventHandler(this.btnFixValves_Click);
 			// 
 			// button2
 			// 
@@ -562,7 +585,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.435207F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.56479F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.btnChooseXML, 2, 0);
 			this.tableLayoutPanel1.Controls.Add(this.lblCurrentXML, 1, 0);
@@ -621,26 +644,6 @@
 			// 
 			this.fileSystemWatcher1.EnableRaisingEvents = true;
 			this.fileSystemWatcher1.SynchronizingObject = this;
-			// 
-			// btnFixValves
-			// 
-			this.btnFixValves.Location = new System.Drawing.Point(6, 135);
-			this.btnFixValves.Name = "btnFixValves";
-			this.btnFixValves.Size = new System.Drawing.Size(161, 23);
-			this.btnFixValves.TabIndex = 18;
-			this.btnFixValves.Text = "Fix Valves";
-			this.btnFixValves.UseVisualStyleBackColor = true;
-			this.btnFixValves.Click += new System.EventHandler(this.btnFixValves_Click);
-			// 
-			// btnAddTimeouts
-			// 
-			this.btnAddTimeouts.Location = new System.Drawing.Point(6, 164);
-			this.btnAddTimeouts.Name = "btnAddTimeouts";
-			this.btnAddTimeouts.Size = new System.Drawing.Size(161, 23);
-			this.btnAddTimeouts.TabIndex = 19;
-			this.btnAddTimeouts.Text = "Add Timeouts";
-			this.btnAddTimeouts.UseVisualStyleBackColor = true;
-			this.btnAddTimeouts.Click += new System.EventHandler(this.btnAddTimeouts_Click);
 			// 
 			// Form1
 			// 

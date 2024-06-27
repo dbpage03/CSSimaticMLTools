@@ -58,5 +58,17 @@ namespace CSSimaticMLTools.Properties {
                 this["FileTreePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#DescriptorControl")]
+        public string DescPath {
+            get {
+                return ((string)(this["DescPath"]));
+            }
+            set {
+                this["DescPath"] = value;
+            }
+        }
     }
 }

@@ -737,5 +737,46 @@ namespace CSSimaticMLTools
 				MessageBox.Show("Operation Complete", "Operation Complete");
 			}
 		}
+        public static void EditDescNo(string fpath, int sNo, string nNo)
+        {
+			string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
+			XDocument xmlDoc = XDocument.Load(fpath);
+            XElement XEdesc = XElement.Parse("<Action Event=\"S1\" Qualifier=\"N\" xmlns=\"http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5\"><Token Text=\"#DescriptorControl\" /><Token Text=\" \" /><Token Text=\":=\" /><Token Text=\"0\" /><Token Text=\"&#xA;\" /></Action>");
+
+
+			if (nNo != "")
+            {
+                string prefix = Interaction.InputBox("Enter the path of DescriptorControl.\nEx. #V1411_Data.DescriptorControl, #DescriptorControl", "Enter DescriptorControl Path", Properties.Settings.Default.DescPath);
+				Properties.Settings.Default.DescPath = prefix;
+				Properties.Settings.Default.Save();
+				XEdesc = XElement.Parse("<Action Event=\"S1\" Qualifier=\"N\" xmlns=\"http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5\"><Token Text=\"" + prefix + "\" /><Token Text=\" \" /><Token Text=\":=\" /><Token Text=\"" + nNo + "\" /><Token Text=\"&#xA;\" /></Action>");
+			}
+			foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
+			{
+				if (step.Attribute("Number").Value != sNo.ToString()) { continue; }
+                foreach (XElement action in step.Descendants(ns + "Action"))
+                {
+                    bool descAction = false;
+                    foreach (XElement token in action.Descendants(ns + "Token"))
+                    {
+                        if (token.Attribute("Text").Value.Contains("DescriptorControl"))
+                        {
+                            descAction = true;
+                            break;
+                        }
+                    }
+                    if (descAction)
+                    {
+                        action.Remove();
+                        break;
+                    }
+                }
+                if (nNo != "")
+                {
+                    step.Element(ns + "Actions").LastNode.AddBeforeSelf(XEdesc);
+                }
+                XSave(xmlDoc, fpath);
+			}
+		}
     }
 }

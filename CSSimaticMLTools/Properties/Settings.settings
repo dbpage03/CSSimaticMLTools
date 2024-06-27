@@ -11,5 +11,8 @@
     <Setting Name="FileTreePath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DescPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#DescriptorControl</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

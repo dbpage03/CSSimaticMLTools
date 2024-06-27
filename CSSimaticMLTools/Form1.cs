@@ -216,17 +216,27 @@ namespace CSSimaticMLTools
                     MessageBox.Show("Failed to Change Step Number","Operation Failed",MessageBoxButtons.OK,MessageBoxIcon.Error); 
                 } else 
                 { 
-                    Program.GetStepNames(openFileDialog1.FileName, dataGridView1); 
+                    Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
                 }
 
             }
-            //Needs to set the interface variables too not done yet
-            if (e.ColumnIndex == 1) 
+            
+            if (e.ColumnIndex == 1)
             {
-                Program.RenameStep(openFileDialog1.FileName, int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView1[e.ColumnIndex,e.RowIndex].Value.ToString());
+                Program.RenameStep(openFileDialog1.FileName, int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString());
+                Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
+            }
+            else if (e.ColumnIndex == 2)
+            {
+                string nNo = "";
+                if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                {
+                    nNo = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
+                }
+				Program.EditDescNo(openFileDialog1.FileName, int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()), nNo);
 				Program.GetStepNames(openFileDialog1.FileName, dataGridView1);
 			}
-            
+
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -300,6 +310,19 @@ namespace CSSimaticMLTools
 		private void btnAddTimeouts_Click(object sender, EventArgs e)
 		{
             Program.AddStepTimeouts(openFileDialog1.FileName);
+		}
+
+		private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+		{
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                if (dataGridView1.CurrentCell.ColumnIndex > 1)
+                {
+                    dataGridView1.CurrentCell.Value = null;
+                    DataGridViewCellEventArgs mArg = new DataGridViewCellEventArgs(dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex);
+                    dataGridView1_CellEndEdit(sender, mArg);
+                }
+            }
 		}
 	}
 }
