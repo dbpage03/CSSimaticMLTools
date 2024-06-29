@@ -116,13 +116,11 @@ namespace CSSimaticMLTools
 		{
 			DirectoryInfo dirInfo = new DirectoryInfo(dir);
 			TreeNode treeNode = treeView1.Nodes.Add(dirInfo.Name);
-			progressBar1.Maximum = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(dir, "**", SearchOption.AllDirectories).Length;
 			treeNode.Tag = dirInfo.FullName;
 			treeNode.ImageIndex = 0;
 			treeNode.SelectedImageIndex = 0;
 			LoadSubDirectories(dir, treeNode);
 			LoadFiles(dir, treeNode);
-			progressBar1.Value = 0;
 		}
 		private void LoadSubDirectories(string dir, TreeNode td)
 		{
@@ -138,7 +136,6 @@ namespace CSSimaticMLTools
 				tds.Tag = di.FullName;
 				LoadFiles(subdirectory, tds);
 				LoadSubDirectories(subdirectory, tds);
-				UpdateProgress();
 			}
 		}
 		private void LoadFiles(string dir, TreeNode td)
@@ -160,14 +157,6 @@ namespace CSSimaticMLTools
 					tds.ImageIndex = 2;
 					tds.SelectedImageIndex = 2;
 				}
-				UpdateProgress();
-			}
-		}
-		private void UpdateProgress()
-		{
-			if (progressBar1.Value < progressBar1.Maximum)
-			{
-				progressBar1.Value++;
 			}
 		}
 

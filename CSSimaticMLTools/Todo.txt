@@ -9,3 +9,4 @@
 	import sequence snippet (like reset sequence)
 	used stepNo list
 	used Title List
+	logging & log viewer

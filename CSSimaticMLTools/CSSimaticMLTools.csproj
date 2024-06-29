@@ -167,6 +167,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <None Include="res\StepGrid.PNG" />
+    <None Include="res\SeqIcon.png" />
     <Content Include="Todo.txt" />
   </ItemGroup>
   <ItemGroup>
