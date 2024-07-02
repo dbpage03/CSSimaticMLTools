@@ -47,13 +47,13 @@ namespace CSSimaticMLTools
                 return ex;
             }
         }
-        public static Tuple<string, string,string> GetInfo(string text)
+        public static Tuple<string, string,string> GetInfo(string fname)
         {
             string type;
             string name;
             string number;
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(text);
+            xmlDoc.Load(fname);
             //Get Type, Name, and Number for FB, FC, DB or OB
             XmlNode node = xmlDoc.SelectSingleNode("Document/SW.Blocks.FB");
             if (node != null)

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,57 @@ namespace CSSimaticMLTools
 		{
 			InitializeComponent();
 		}
+		private void SmeltSequence_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Cursor = Cursors.WaitCursor;
+			treeView1.Nodes.Clear();
+			Cursor = Cursors.Default;
+		}
 
+		#region TreeView
 		private void treeView1_BeforeExpand(object sender, TreeViewCancelEventArgs e)
 		{
 			e.Node.ImageIndex = 1;
 			e.Node.SelectedImageIndex = 1;
+			foreach (TreeNode node in e.Node.Nodes)
+			{
+				if (node.Text.EndsWith(".xml"))
+				{
+					Tuple<string, string, string> info = Program.GetInfo(node.Tag as string);
+					Console.WriteLine(info.ToString());
+					if (info.Item1 == "GRAPH")
+					{
+						node.ImageIndex = 3;
+						node.SelectedImageIndex = 3;
+					} else if (info.Item3.StartsWith("FB"))
+					{
+						node.ImageIndex = 6;
+						node.SelectedImageIndex = 6;
+					}
+					else if (info.Item3.StartsWith("FC"))
+					{
+						node.ImageIndex = 7;
+						node.SelectedImageIndex = 7;
+					}
+					else if (info.Item3.StartsWith("OB"))
+					{
+						node.ImageIndex = 5;
+						node.SelectedImageIndex = 5;
+					}
+					else if (info.Item3.StartsWith("DB"))
+					{
+						node.ImageIndex = 8;
+						node.SelectedImageIndex = 8;
+					}
+					else
+					{
+						node.ImageIndex = 4;
+						node.SelectedImageIndex = 4;
+					}
+					
+				}
+
+			}
 		}
 
 		private void treeView1_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
@@ -37,7 +84,11 @@ namespace CSSimaticMLTools
 		private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			Console.WriteLine(e.Node.FullPath);
+			lblStatusPath.Text = e.Node.Tag as string;
 		}
+
+		#endregion
+		#region LoadTreeView
 
 		private void SmeltSequence_Load(object sender, EventArgs e)
 		{
@@ -119,6 +170,7 @@ namespace CSSimaticMLTools
 			treeNode.Tag = dirInfo.FullName;
 			treeNode.ImageIndex = 0;
 			treeNode.SelectedImageIndex = 0;
+			treeNode.ToolTipText = dirInfo.FullName;
 			LoadSubDirectories(dir, treeNode);
 			LoadFiles(dir, treeNode);
 		}
@@ -134,32 +186,25 @@ namespace CSSimaticMLTools
 				tds.ImageIndex = 0;
 				tds.SelectedImageIndex = 0;
 				tds.Tag = di.FullName;
+				tds.ToolTipText = di.FullName;
 				LoadFiles(subdirectory, tds);
 				LoadSubDirectories(subdirectory, tds);
 			}
 		}
 		private void LoadFiles(string dir, TreeNode td)
 		{
-			string[] Files = Directory.GetFiles(dir, "*.xml");
+			string[] Files = Directory.GetFiles(dir, "*.*");
 			// Loop through them to see files
 			foreach (string file in Files)
 			{
 				FileInfo fi = new FileInfo(file);
 				TreeNode tds = td.Nodes.Add(fi.Name);
 				tds.Tag = fi.FullName;
-				if (file.EndsWith(".xml"))
-				{
-					tds.ImageIndex = 3;
-					tds.SelectedImageIndex = 3;
-				}
-				else
-				{
-					tds.ImageIndex = 2;
-					tds.SelectedImageIndex = 2;
-				}
+				tds.ToolTipText = fi.FullName;
 			}
 		}
-
+		#endregion
+		#region ToolStrip
 		private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			DialogResult drFolder = folderBrowserDialog1.ShowDialog();
@@ -180,18 +225,22 @@ namespace CSSimaticMLTools
 			Close();
 		}
 
-		private void SmeltSequence_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			Cursor = Cursors.WaitCursor;
-			treeView1.Nodes.Clear();
-			Cursor = Cursors.Default;
-		}
-
 		private void newVersionToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Properties.Settings.Default.NewApp = !Properties.Settings.Default.NewApp;
 			Properties.Settings.Default.Save();
 			newVersionToolStripMenuItem.Checked = Properties.Settings.Default.NewApp;
+		}
+
+		private void openToolStripButton_Click(object sender, EventArgs e)
+		{
+			openFolderToolStripMenuItem_Click(sender,e);
+		}
+		#endregion
+
+		private void treeView1_MouseDown(object sender, MouseEventArgs e)
+		{
+
 		}
 	}
 }

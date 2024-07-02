@@ -16,9 +16,20 @@ namespace CSSimaticMLTools
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(string fileName = "")
         {
             InitializeComponent();
+            if (fileName != "")
+            {
+                openFileDialog1.FileName = fileName;
+				Tuple<string, string, string> info;
+				lblCurrentXML.Text = openFileDialog1.FileName;
+				info = Program.GetInfo(openFileDialog1.FileName);
+				Program.GetStepNames(openFileDialog1.FileName, dataGridView1, true);
+				lblType.Text = info.Item1;
+				lblName.Text = info.Item2;
+				lblNumber.Text = info.Item3;
+			}
         }
 
         private int stepNo = -1;
