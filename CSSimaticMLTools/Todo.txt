@@ -10,3 +10,4 @@
 	used stepNo list
 	used Title List
 	logging & log viewer
+	Keyboard shortcuts -- no more mouse

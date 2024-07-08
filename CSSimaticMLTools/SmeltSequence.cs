@@ -94,6 +94,7 @@ namespace CSSimaticMLTools
 		{
 			newVersionToolStripMenuItem.Checked = Properties.Settings.Default.NewApp;
 			rootPath = Properties.Settings.Default.FileTreePath;
+			tbcSeqView.SelectedIndex = 1;
 			while (rootPath == "")
 			{
 				OpenFolder();
