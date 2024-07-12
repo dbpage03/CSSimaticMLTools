@@ -102,7 +102,7 @@
 			// 
 			// btnChooseXML
 			// 
-			this.btnChooseXML.Location = new System.Drawing.Point(842, 3);
+			this.btnChooseXML.Location = new System.Drawing.Point(841, 3);
 			this.btnChooseXML.Name = "btnChooseXML";
 			this.btnChooseXML.Size = new System.Drawing.Size(88, 21);
 			this.btnChooseXML.TabIndex = 0;
@@ -119,7 +119,7 @@
 			this.lblCurrentXML.Margin = new System.Windows.Forms.Padding(3);
 			this.lblCurrentXML.MinimumSize = new System.Drawing.Size(400, 20);
 			this.lblCurrentXML.Name = "lblCurrentXML";
-			this.lblCurrentXML.Size = new System.Drawing.Size(763, 20);
+			this.lblCurrentXML.Size = new System.Drawing.Size(762, 20);
 			this.lblCurrentXML.TabIndex = 1;
 			this.lblCurrentXML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -146,7 +146,7 @@
 			// newVersionToolStripMenuItem
 			// 
 			this.newVersionToolStripMenuItem.Name = "newVersionToolStripMenuItem";
-			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.newVersionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.newVersionToolStripMenuItem.Text = "New Version";
 			this.newVersionToolStripMenuItem.Click += new System.EventHandler(this.newVersionToolStripMenuItem_Click);
 			// 
@@ -154,7 +154,7 @@
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -604,7 +604,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.435207F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.56479F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.btnChooseXML, 2, 0);
 			this.tableLayoutPanel1.Controls.Add(this.lblCurrentXML, 1, 0);
@@ -699,8 +699,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnChooseXML;
         private System.Windows.Forms.Label lblCurrentXML;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -748,6 +746,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableDescNo;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TableDesc;
+		public System.Windows.Forms.OpenFileDialog openFileDialog1;
 	}
 }
 

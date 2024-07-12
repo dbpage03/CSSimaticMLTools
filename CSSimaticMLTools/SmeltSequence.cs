@@ -28,6 +28,11 @@ namespace CSSimaticMLTools
 			treeView1.Nodes.Clear();
 			Cursor = Cursors.Default;
 		}
+		private void SmeltSequence_ResizeEnd(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.SMeLTSeqSize = this.Size;
+			Properties.Settings.Default.Save();
+		}
 
 		#region TreeView
 		private void treeView1_BeforeExpand(object sender, TreeViewCancelEventArgs e)
@@ -87,11 +92,29 @@ namespace CSSimaticMLTools
 			lblStatusPath.Text = e.Node.Tag as string;
 		}
 
+		private void treeView1_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left && e.Clicks == 2)
+			{
+				if (treeView1.SelectedNode.FullPath.EndsWith(".xml"))
+				{
+					Form1 frmSingle = new Form1(treeView1.SelectedNode.Tag as string);
+					frmSingle.ShowDialog();
+				}
+			}
+		}
+
 		#endregion
 		#region LoadTreeView
 
 		private void SmeltSequence_Load(object sender, EventArgs e)
 		{
+			if (Properties.Settings.Default.SMeLTSeqSize.Width == 0)
+			{
+				Properties.Settings.Default.SMeLTSeqSize = this.Size;
+				Properties.Settings.Default.Save();
+			}
+			this.Size = Properties.Settings.Default.SMeLTSeqSize;
 			newVersionToolStripMenuItem.Checked = Properties.Settings.Default.NewApp;
 			rootPath = Properties.Settings.Default.FileTreePath;
 			tbcSeqView.SelectedIndex = 1;
@@ -238,10 +261,5 @@ namespace CSSimaticMLTools
 			openFolderToolStripMenuItem_Click(sender,e);
 		}
 		#endregion
-
-		private void treeView1_MouseDown(object sender, MouseEventArgs e)
-		{
-
-		}
 	}
 }

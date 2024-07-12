@@ -263,7 +263,7 @@ namespace CSSimaticMLTools
             }
             
         }
-        public static void RewriteSteps(string fpath)
+        /*public static void RewriteSteps(string fpath)
         {
             string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
             XDocument xmlDoc = XDocument.Load(fpath);
@@ -319,7 +319,7 @@ namespace CSSimaticMLTools
 			{
 				MessageBox.Show("Operation Complete", "Operation Complete");
 			}
-		}
+		}*/
         public static void InStepReplaceX(string fpath)
         {
             string ns = "{http://www.siemens.com/automation/Openness/SW/NetworkSource/Graph/v5}";
@@ -497,17 +497,22 @@ namespace CSSimaticMLTools
             if (nNo < 0 || nNo > 9999) { return sNo; }
             foreach (XElement step in xmlDoc.Descendants(ns + "Step"))
             {
-				XElement connTo = null;
+				//XElement connTo = null;
                 XElement connFrom = null;
                 XElement staticMember = null;
+                List<XElement> connsTo = new List<XElement>();
+            
                 foreach (XElement conn in xmlDoc.Descendants(ns + "Connection"))
                 {
                     if (conn.Element(ns + "NodeTo").Descendants(ns + "StepRef").Count() > 0)
                     {
                         if (conn.Element(ns + "NodeTo").Descendants(ns + "StepRef").First().Attribute("Number").Value == step.Attribute("Number").Value)
                         {
-                            connTo = conn;
-                        }
+                            //connTo = conn;
+                            connsTo.Add(conn);
+                            Console.WriteLine(conn.Element(ns + "NodeTo").Descendants(ns + "StepRef").First().Attribute("Number"));
+
+						}
                     }
                     if (conn.Element(ns + "NodeFrom").Descendants(ns + "StepRef").Count() > 0)
                     {
@@ -525,10 +530,10 @@ namespace CSSimaticMLTools
                         break;
                     }
                 }
-                tempConn = new GRAPHStepConnect(ns, step, connTo, connFrom, staticMember);
+                tempConn = new GRAPHStepConnect(ns, step, connsTo, connFrom, staticMember);
                 if (tempConn.sNo == sNo)
                 {
-                    stepConn = new GRAPHStepConnect(ns, step, connTo, connFrom, staticMember);
+                    stepConn = new GRAPHStepConnect(ns, step, connsTo, connFrom, staticMember);
                 }
                 if (tempConn.sNo == nNo) { nNoValid = false; }
 
@@ -536,7 +541,7 @@ namespace CSSimaticMLTools
             if (nNoValid && stepConn != null)
             {
 				//Console.Write(stepConn.ogStep.Element(ns + "Supervisions").Element(ns + "Supervision").ToString());
-				foreach (XElement component in stepConn.ogStep.Descendants()) { Console.WriteLine(component.ToString()); }
+				//foreach (XElement component in stepConn.ogStep.Descendants()) { Console.WriteLine(component.ToString()); }
 				stepConn.SetNo(nNo);
 				XSave(stepConn.ReplaceInDoc(xmlDoc), fpath);
 				return nNo;

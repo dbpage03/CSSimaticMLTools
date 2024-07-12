@@ -11,3 +11,6 @@
 	used Title List
 	logging & log viewer
 	Keyboard shortcuts -- no more mouse
+
+Bugs:
+	Jumps can make for more than one Connection to a step

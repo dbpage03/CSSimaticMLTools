@@ -32,23 +32,23 @@ namespace CSSimaticMLTools
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmeltSequence));
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("oijfd.xml");
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Node7");
-			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Node6", new System.Windows.Forms.TreeNode[] {
-            treeNode8});
-			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Node2", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode9});
-			System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Node4");
-			System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Root", new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode11});
-			System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("oijfd.xml");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node7");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node6", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node2", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode3});
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node4");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Root", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+			System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "123",
             "AFHSD",
             "123",
             "SDF SDFGH "}, -1);
-			System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "345",
             "wasdg",
             "567",
@@ -115,7 +115,7 @@ namespace CSSimaticMLTools
 			this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(174, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(180, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -208,9 +208,9 @@ namespace CSSimaticMLTools
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatusPath});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 394);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 473);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(925, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(958, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -267,7 +267,7 @@ namespace CSSimaticMLTools
             this.helpToolStripButton});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(747, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(774, 25);
 			this.toolStrip1.TabIndex = 0;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -323,8 +323,8 @@ namespace CSSimaticMLTools
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.toolStrip1);
-			this.splitContainer2.Size = new System.Drawing.Size(925, 25);
-			this.splitContainer2.SplitterDistance = 174;
+			this.splitContainer2.Size = new System.Drawing.Size(958, 25);
+			this.splitContainer2.SplitterDistance = 180;
 			this.splitContainer2.TabIndex = 4;
 			// 
 			// splitContainer1
@@ -343,8 +343,8 @@ namespace CSSimaticMLTools
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.tbcSeqView);
 			this.splitContainer1.Panel2MinSize = 50;
-			this.splitContainer1.Size = new System.Drawing.Size(925, 369);
-			this.splitContainer1.SplitterDistance = 109;
+			this.splitContainer1.Size = new System.Drawing.Size(958, 448);
+			this.splitContainer1.SplitterDistance = 258;
 			this.splitContainer1.TabIndex = 3;
 			// 
 			// treeView1
@@ -356,25 +356,25 @@ namespace CSSimaticMLTools
 			this.treeView1.ItemHeight = 20;
 			this.treeView1.Location = new System.Drawing.Point(0, 0);
 			this.treeView1.Name = "treeView1";
-			treeNode7.Name = "Node5";
-			treeNode7.Text = "oijfd.xml";
-			treeNode8.Name = "Node7";
-			treeNode8.Text = "Node7";
-			treeNode9.Name = "Node6";
-			treeNode9.Text = "Node6";
-			treeNode10.Name = "Node2";
-			treeNode10.Text = "Node2";
-			treeNode11.Name = "Node4";
-			treeNode11.Text = "Node4";
-			treeNode12.ImageKey = "closedFolder.ico";
-			treeNode12.Name = "NodeRoot";
-			treeNode12.SelectedImageKey = "openFolder.ico";
-			treeNode12.Text = "Root";
+			treeNode1.Name = "Node5";
+			treeNode1.Text = "oijfd.xml";
+			treeNode2.Name = "Node7";
+			treeNode2.Text = "Node7";
+			treeNode3.Name = "Node6";
+			treeNode3.Text = "Node6";
+			treeNode4.Name = "Node2";
+			treeNode4.Text = "Node2";
+			treeNode5.Name = "Node4";
+			treeNode5.Text = "Node4";
+			treeNode6.ImageKey = "closedFolder.ico";
+			treeNode6.Name = "NodeRoot";
+			treeNode6.SelectedImageKey = "openFolder.ico";
+			treeNode6.Text = "Root";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode6});
 			this.treeView1.SelectedImageIndex = 2;
 			this.treeView1.ShowNodeToolTips = true;
-			this.treeView1.Size = new System.Drawing.Size(105, 365);
+			this.treeView1.Size = new System.Drawing.Size(254, 444);
 			this.treeView1.TabIndex = 1;
 			this.treeView1.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeCollapse);
 			this.treeView1.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeExpand);
@@ -392,7 +392,7 @@ namespace CSSimaticMLTools
 			this.tbcSeqView.Location = new System.Drawing.Point(3, 3);
 			this.tbcSeqView.Name = "tbcSeqView";
 			this.tbcSeqView.SelectedIndex = 0;
-			this.tbcSeqView.Size = new System.Drawing.Size(807, 364);
+			this.tbcSeqView.Size = new System.Drawing.Size(691, 443);
 			this.tbcSeqView.TabIndex = 1;
 			// 
 			// tbpInfo
@@ -400,7 +400,7 @@ namespace CSSimaticMLTools
 			this.tbpInfo.Location = new System.Drawing.Point(4, 22);
 			this.tbpInfo.Name = "tbpInfo";
 			this.tbpInfo.Padding = new System.Windows.Forms.Padding(3);
-			this.tbpInfo.Size = new System.Drawing.Size(799, 338);
+			this.tbpInfo.Size = new System.Drawing.Size(683, 417);
 			this.tbpInfo.TabIndex = 2;
 			this.tbpInfo.Text = "Info";
 			this.tbpInfo.UseVisualStyleBackColor = true;
@@ -429,7 +429,7 @@ namespace CSSimaticMLTools
 			this.tbpList.Location = new System.Drawing.Point(4, 22);
 			this.tbpList.Name = "tbpList";
 			this.tbpList.Padding = new System.Windows.Forms.Padding(3);
-			this.tbpList.Size = new System.Drawing.Size(726, 310);
+			this.tbpList.Size = new System.Drawing.Size(683, 417);
 			this.tbpList.TabIndex = 0;
 			this.tbpList.Text = "List View";
 			this.tbpList.UseVisualStyleBackColor = true;
@@ -448,14 +448,14 @@ namespace CSSimaticMLTools
 			this.lstSteps.GridLines = true;
 			this.lstSteps.HideSelection = false;
 			this.lstSteps.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
 			this.lstSteps.LabelEdit = true;
 			this.lstSteps.Location = new System.Drawing.Point(0, 0);
 			this.lstSteps.MultiSelect = false;
 			this.lstSteps.Name = "lstSteps";
 			this.lstSteps.ShowGroups = false;
-			this.lstSteps.Size = new System.Drawing.Size(565, 343);
+			this.lstSteps.Size = new System.Drawing.Size(683, 417);
 			this.lstSteps.TabIndex = 0;
 			this.lstSteps.UseCompatibleStateImageBehavior = false;
 			this.lstSteps.View = System.Windows.Forms.View.Details;
@@ -468,7 +468,7 @@ namespace CSSimaticMLTools
 			// colName
 			// 
 			this.colName.Text = "Name";
-			this.colName.Width = 192;
+			this.colName.Width = 195;
 			// 
 			// colDescNo
 			// 
@@ -478,13 +478,13 @@ namespace CSSimaticMLTools
 			// colDescText
 			// 
 			this.colDescText.Text = "Description";
-			this.colDescText.Width = 294;
+			this.colDescText.Width = 300;
 			// 
 			// SmeltSequence
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(925, 416);
+			this.ClientSize = new System.Drawing.Size(958, 495);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.splitContainer2);
@@ -494,6 +494,7 @@ namespace CSSimaticMLTools
 			this.Text = "SMeLT Sequence";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SmeltSequence_FormClosing);
 			this.Load += new System.EventHandler(this.SmeltSequence_Load);
+			this.ResizeEnd += new System.EventHandler(this.SmeltSequence_ResizeEnd);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);

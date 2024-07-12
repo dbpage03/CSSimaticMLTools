@@ -14,5 +14,8 @@
     <Setting Name="DescPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">#DescriptorControl</Value>
     </Setting>
+    <Setting Name="SMeLTSeqSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

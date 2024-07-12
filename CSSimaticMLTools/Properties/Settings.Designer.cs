@@ -70,5 +70,17 @@ namespace CSSimaticMLTools.Properties {
                 this["DescPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size SMeLTSeqSize {
+            get {
+                return ((global::System.Drawing.Size)(this["SMeLTSeqSize"]));
+            }
+            set {
+                this["SMeLTSeqSize"] = value;
+            }
+        }
     }
 }
